@@ -1,0 +1,547 @@
+{
+  "nodes": [
+    {
+      "id": "114721",
+      "label": "lateral_movement",
+      "attacker_id": "ATTACKER-004",
+      "host": "SERVER-02",
+      "severity": "high",
+      "timestamp": "2026-08-21T00:09:06.117746"
+    },
+    {
+      "id": "592408",
+      "label": "process_created",
+      "attacker_id": "ATTACKER-003",
+      "host": "WORKSTATION-02",
+      "severity": "low",
+      "timestamp": "2026-08-20T23:57:06.117746"
+    },
+    {
+      "id": "649234",
+      "label": "privilege_escalation",
+      "attacker_id": "ATTACKER-003",
+      "host": "WORKSTATION-01",
+      "severity": "high",
+      "timestamp": "2026-08-21T00:07:06.117746"
+    },
+    {
+      "id": "109052",
+      "label": "privilege_escalation",
+      "attacker_id": "ATTACKER-005",
+      "host": "SERVER-02",
+      "severity": "high",
+      "timestamp": "2026-08-21T00:37:06.117746"
+    },
+    {
+      "id": "208223",
+      "label": "data_access",
+      "attacker_id": "ATTACKER-005",
+      "host": "WORKSTATION-02",
+      "severity": "low",
+      "timestamp": "2026-08-21T00:21:06.117746"
+    },
+    {
+      "id": "539833",
+      "label": "credential_access",
+      "attacker_id": "ATTACKER-004",
+      "host": "SERVER-01",
+      "severity": "high",
+      "timestamp": "2026-08-21T00:13:06.117746"
+    },
+    {
+      "id": "866068",
+      "label": "credential_access",
+      "attacker_id": "ATTACKER-001",
+      "host": "SERVER-02",
+      "severity": "high",
+      "timestamp": "2026-08-20T23:39:06.117746"
+    },
+    {
+      "id": "900616",
+      "label": "process_created",
+      "attacker_id": "ATTACKER-001",
+      "host": "SERVER-01",
+      "severity": "low",
+      "timestamp": "2026-08-20T23:39:06.117746"
+    },
+    {
+      "id": "320822",
+      "label": "failed_login",
+      "attacker_id": "ATTACKER-004",
+      "host": "WORKSTATION-01",
+      "severity": "medium",
+      "timestamp": "2026-08-20T23:57:06.117746"
+    },
+    {
+      "id": "618540",
+      "label": "process_created",
+      "attacker_id": "ATTACKER-005",
+      "host": "SERVER-01",
+      "severity": "low",
+      "timestamp": "2026-08-21T00:13:06.117746"
+    },
+    {
+      "id": "759504",
+      "label": "lateral_movement",
+      "attacker_id": "ATTACKER-002",
+      "host": "SERVER-01",
+      "severity": "high",
+      "timestamp": "2026-08-21T00:19:06.117746"
+    },
+    {
+      "id": "184797",
+      "label": "powershell_execution",
+      "attacker_id": "ATTACKER-005",
+      "host": "SERVER-02",
+      "severity": "low",
+      "timestamp": "2026-08-21T00:28:06.117746"
+    },
+    {
+      "id": "612351",
+      "label": "failed_login",
+      "attacker_id": "ATTACKER-003",
+      "host": "WORKSTATION-01",
+      "severity": "low",
+      "timestamp": "2026-08-20T23:47:06.117746"
+    },
+    {
+      "id": "777984",
+      "label": "powershell_execution",
+      "attacker_id": "ATTACKER-002",
+      "host": "SERVER-02",
+      "severity": "medium",
+      "timestamp": "2026-08-21T00:01:06.117746"
+    },
+    {
+      "id": "682539",
+      "label": "process_created",
+      "attacker_id": "ATTACKER-002",
+      "host": "SERVER-01",
+      "severity": "low",
+      "timestamp": "2026-08-20T23:43:06.117746"
+    },
+    {
+      "id": "780446",
+      "label": "privilege_escalation",
+      "attacker_id": "ATTACKER-002",
+      "host": "WORKSTATION-01",
+      "severity": "high",
+      "timestamp": "2026-08-21T00:17:06.117746"
+    },
+    {
+      "id": "851526",
+      "label": "privilege_escalation",
+      "attacker_id": "ATTACKER-004",
+      "host": "WORKSTATION-02",
+      "severity": "high",
+      "timestamp": "2026-08-21T00:12:06.117746"
+    },
+    {
+      "id": "310575",
+      "label": "lateral_movement",
+      "attacker_id": "ATTACKER-001",
+      "host": "WORKSTATION-02",
+      "severity": "high",
+      "timestamp": "2026-08-20T23:39:06.117746"
+    },
+    {
+      "id": "780767",
+      "label": "failed_login",
+      "attacker_id": "ATTACKER-001",
+      "host": "SERVER-02",
+      "severity": "low",
+      "timestamp": "2026-08-20T23:27:06.117746"
+    },
+    {
+      "id": "414829",
+      "label": "failed_login",
+      "attacker_id": "ATTACKER-005",
+      "host": "WORKSTATION-01",
+      "severity": "medium",
+      "timestamp": "2026-08-21T00:07:06.117746"
+    },
+    {
+      "id": "746737",
+      "label": "privilege_escalation",
+      "attacker_id": "ATTACKER-001",
+      "host": "SERVER-02",
+      "severity": "high",
+      "timestamp": "2026-08-20T23:37:06.117746"
+    },
+    {
+      "id": "684525",
+      "label": "lateral_movement",
+      "attacker_id": "ATTACKER-003",
+      "host": "WORKSTATION-02",
+      "severity": "high",
+      "timestamp": "2026-08-21T00:35:06.117746"
+    },
+    {
+      "id": "740136",
+      "label": "successful_login",
+      "attacker_id": "ATTACKER-002",
+      "host": "SERVER-02",
+      "severity": "medium",
+      "timestamp": "2026-08-20T23:43:06.117746"
+    },
+    {
+      "id": "963254",
+      "label": "credential_access",
+      "attacker_id": "ATTACKER-002",
+      "host": "WORKSTATION-02",
+      "severity": "high",
+      "timestamp": "2026-08-20T23:57:06.117746"
+    },
+    {
+      "id": "366864",
+      "label": "successful_login",
+      "attacker_id": "ATTACKER-001",
+      "host": "SERVER-02",
+      "severity": "low",
+      "timestamp": "2026-08-20T23:31:06.117746"
+    },
+    {
+      "id": "990843",
+      "label": "data_access",
+      "attacker_id": "ATTACKER-003",
+      "host": "WORKSTATION-01",
+      "severity": "medium",
+      "timestamp": "2026-08-21T00:43:06.117746"
+    },
+    {
+      "id": "763547",
+      "label": "powershell_execution",
+      "attacker_id": "ATTACKER-003",
+      "host": "WORKSTATION-01",
+      "severity": "medium",
+      "timestamp": "2026-08-21T00:08:06.117746"
+    },
+    {
+      "id": "683465",
+      "label": "lateral_movement",
+      "attacker_id": "ATTACKER-005",
+      "host": "SERVER-01",
+      "severity": "high",
+      "timestamp": "2026-08-21T00:49:06.117746"
+    },
+    {
+      "id": "716722",
+      "label": "powershell_execution",
+      "attacker_id": "ATTACKER-001",
+      "host": "SERVER-01",
+      "severity": "medium",
+      "timestamp": "2026-08-20T23:36:06.117746"
+    },
+    {
+      "id": "538900",
+      "label": "data_access",
+      "attacker_id": "ATTACKER-001",
+      "host": "SERVER-01",
+      "severity": "low",
+      "timestamp": "2026-08-21T00:09:06.117746"
+    },
+    {
+      "id": "156011",
+      "label": "failed_login",
+      "attacker_id": "ATTACKER-002",
+      "host": "WORKSTATION-01",
+      "severity": "medium",
+      "timestamp": "2026-08-20T23:37:06.117746"
+    },
+    {
+      "id": "291848",
+      "label": "data_access",
+      "attacker_id": "ATTACKER-004",
+      "host": "SERVER-02",
+      "severity": "low",
+      "timestamp": "2026-08-21T00:39:06.117746"
+    },
+    {
+      "id": "920859",
+      "label": "data_access",
+      "attacker_id": "ATTACKER-002",
+      "host": "WORKSTATION-02",
+      "severity": "medium",
+      "timestamp": "2026-08-21T00:05:06.117746"
+    },
+    {
+      "id": "981336",
+      "label": "credential_access",
+      "attacker_id": "ATTACKER-003",
+      "host": "WORKSTATION-01",
+      "severity": "high",
+      "timestamp": "2026-08-21T00:11:06.117746"
+    },
+    {
+      "id": "896909",
+      "label": "credential_access",
+      "attacker_id": "ATTACKER-005",
+      "host": "WORKSTATION-02",
+      "severity": "high",
+      "timestamp": "2026-08-21T00:23:06.117746"
+    },
+    {
+      "id": "815335",
+      "label": "successful_login",
+      "attacker_id": "ATTACKER-003",
+      "host": "SERVER-02",
+      "severity": "low",
+      "timestamp": "2026-08-20T23:54:06.117746"
+    },
+    {
+      "id": "460642",
+      "label": "powershell_execution",
+      "attacker_id": "ATTACKER-004",
+      "host": "WORKSTATION-01",
+      "severity": "low",
+      "timestamp": "2026-08-21T00:03:06.117746"
+    },
+    {
+      "id": "990648",
+      "label": "successful_login",
+      "attacker_id": "ATTACKER-004",
+      "host": "SERVER-01",
+      "severity": "medium",
+      "timestamp": "2026-08-21T00:03:06.117746"
+    },
+    {
+      "id": "581225",
+      "label": "successful_login",
+      "attacker_id": "ATTACKER-005",
+      "host": "WORKSTATION-02",
+      "severity": "low",
+      "timestamp": "2026-08-21T00:14:06.117746"
+    },
+    {
+      "id": "713609",
+      "label": "process_created",
+      "attacker_id": "ATTACKER-004",
+      "host": "SERVER-02",
+      "severity": "medium",
+      "timestamp": "2026-08-21T00:09:06.117746"
+    },
+    {
+      "id": "999999",
+      "label": "failed_login",
+      "attacker_id": "ATTACKER-TEST",
+      "host": "SERVER-TEST",
+      "severity": "high",
+      "timestamp": "2026-09-06T16:03:31.207868"
+    },
+    {
+      "id": "999001",
+      "label": "failed_login",
+      "attacker_id": "ATTACKER-NEW",
+      "host": "SERVER-A",
+      "severity": "high",
+      "timestamp": "2026-09-09T06:00:01.186919"
+    }
+  ],
+  "edges": [
+    {
+      "id": "114721-592408",
+      "source": "114721",
+      "target": "592408"
+    },
+    {
+      "id": "592408-649234",
+      "source": "592408",
+      "target": "649234"
+    },
+    {
+      "id": "649234-109052",
+      "source": "649234",
+      "target": "109052"
+    },
+    {
+      "id": "109052-208223",
+      "source": "109052",
+      "target": "208223"
+    },
+    {
+      "id": "208223-539833",
+      "source": "208223",
+      "target": "539833"
+    },
+    {
+      "id": "539833-866068",
+      "source": "539833",
+      "target": "866068"
+    },
+    {
+      "id": "866068-900616",
+      "source": "866068",
+      "target": "900616"
+    },
+    {
+      "id": "900616-320822",
+      "source": "900616",
+      "target": "320822"
+    },
+    {
+      "id": "320822-618540",
+      "source": "320822",
+      "target": "618540"
+    },
+    {
+      "id": "618540-759504",
+      "source": "618540",
+      "target": "759504"
+    },
+    {
+      "id": "759504-184797",
+      "source": "759504",
+      "target": "184797"
+    },
+    {
+      "id": "184797-612351",
+      "source": "184797",
+      "target": "612351"
+    },
+    {
+      "id": "612351-777984",
+      "source": "612351",
+      "target": "777984"
+    },
+    {
+      "id": "777984-682539",
+      "source": "777984",
+      "target": "682539"
+    },
+    {
+      "id": "682539-780446",
+      "source": "682539",
+      "target": "780446"
+    },
+    {
+      "id": "780446-851526",
+      "source": "780446",
+      "target": "851526"
+    },
+    {
+      "id": "851526-310575",
+      "source": "851526",
+      "target": "310575"
+    },
+    {
+      "id": "310575-780767",
+      "source": "310575",
+      "target": "780767"
+    },
+    {
+      "id": "780767-414829",
+      "source": "780767",
+      "target": "414829"
+    },
+    {
+      "id": "414829-746737",
+      "source": "414829",
+      "target": "746737"
+    },
+    {
+      "id": "746737-684525",
+      "source": "746737",
+      "target": "684525"
+    },
+    {
+      "id": "684525-740136",
+      "source": "684525",
+      "target": "740136"
+    },
+    {
+      "id": "740136-963254",
+      "source": "740136",
+      "target": "963254"
+    },
+    {
+      "id": "963254-366864",
+      "source": "963254",
+      "target": "366864"
+    },
+    {
+      "id": "366864-990843",
+      "source": "366864",
+      "target": "990843"
+    },
+    {
+      "id": "990843-763547",
+      "source": "990843",
+      "target": "763547"
+    },
+    {
+      "id": "763547-683465",
+      "source": "763547",
+      "target": "683465"
+    },
+    {
+      "id": "683465-716722",
+      "source": "683465",
+      "target": "716722"
+    },
+    {
+      "id": "716722-538900",
+      "source": "716722",
+      "target": "538900"
+    },
+    {
+      "id": "538900-156011",
+      "source": "538900",
+      "target": "156011"
+    },
+    {
+      "id": "156011-291848",
+      "source": "156011",
+      "target": "291848"
+    },
+    {
+      "id": "291848-920859",
+      "source": "291848",
+      "target": "920859"
+    },
+    {
+      "id": "920859-981336",
+      "source": "920859",
+      "target": "981336"
+    },
+    {
+      "id": "981336-896909",
+      "source": "981336",
+      "target": "896909"
+    },
+    {
+      "id": "896909-815335",
+      "source": "896909",
+      "target": "815335"
+    },
+    {
+      "id": "815335-460642",
+      "source": "815335",
+      "target": "460642"
+    },
+    {
+      "id": "460642-990648",
+      "source": "460642",
+      "target": "990648"
+    },
+    {
+      "id": "990648-581225",
+      "source": "990648",
+      "target": "581225"
+    },
+    {
+      "id": "581225-713609",
+      "source": "581225",
+      "target": "713609"
+    },
+    {
+      "id": "713609-999999",
+      "source": "713609",
+      "target": "999999"
+    },
+    {
+      "id": "999999-999001",
+      "source": "999999",
+      "target": "999001"
+    }
+  ]
+}

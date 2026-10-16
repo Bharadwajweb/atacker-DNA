@@ -1,0 +1,19 @@
+# Node.js
+node_modules/
+frontend/node_modules/
+frontend/dist/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+
+# Keep example environment templates
+!.env.example
+
+# Generated files
+.pytest_cache/
+.coverage

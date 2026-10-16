@@ -1,0 +1,169 @@
+{
+  "fingerprints": [
+    {
+      "attacker_id": "ATTACKER-004",
+      "total_events": 8,
+      "event_types": [
+        "lateral_movement",
+        "credential_access",
+        "failed_login",
+        "privilege_escalation",
+        "data_access",
+        "powershell_execution",
+        "successful_login",
+        "process_created"
+      ],
+      "source_ips": [
+        "10.0.0.15",
+        "10.0.0.21",
+        "10.0.0.77",
+        "10.0.0.45"
+      ],
+      "hosts": [
+        "SERVER-02",
+        "SERVER-01",
+        "WORKSTATION-01",
+        "WORKSTATION-02"
+      ],
+      "high_severity_events": 3,
+      "risk_score": 100
+    },
+    {
+      "attacker_id": "ATTACKER-003",
+      "total_events": 8,
+      "event_types": [
+        "process_created",
+        "privilege_escalation",
+        "failed_login",
+        "lateral_movement",
+        "data_access",
+        "powershell_execution",
+        "credential_access",
+        "successful_login"
+      ],
+      "source_ips": [
+        "10.0.0.45",
+        "10.0.0.21",
+        "10.0.0.77"
+      ],
+      "hosts": [
+        "WORKSTATION-02",
+        "WORKSTATION-01",
+        "SERVER-02"
+      ],
+      "high_severity_events": 3,
+      "risk_score": 100
+    },
+    {
+      "attacker_id": "ATTACKER-005",
+      "total_events": 8,
+      "event_types": [
+        "privilege_escalation",
+        "data_access",
+        "process_created",
+        "powershell_execution",
+        "failed_login",
+        "lateral_movement",
+        "credential_access",
+        "successful_login"
+      ],
+      "source_ips": [
+        "10.0.0.45",
+        "10.0.0.21",
+        "10.0.0.77",
+        "10.0.0.15"
+      ],
+      "hosts": [
+        "SERVER-02",
+        "WORKSTATION-02",
+        "SERVER-01",
+        "WORKSTATION-01"
+      ],
+      "high_severity_events": 3,
+      "risk_score": 100
+    },
+    {
+      "attacker_id": "ATTACKER-001",
+      "total_events": 8,
+      "event_types": [
+        "credential_access",
+        "process_created",
+        "lateral_movement",
+        "failed_login",
+        "privilege_escalation",
+        "successful_login",
+        "powershell_execution",
+        "data_access"
+      ],
+      "source_ips": [
+        "10.0.0.45",
+        "10.0.0.21",
+        "10.0.0.77"
+      ],
+      "hosts": [
+        "SERVER-02",
+        "SERVER-01",
+        "WORKSTATION-02"
+      ],
+      "high_severity_events": 3,
+      "risk_score": 100
+    },
+    {
+      "attacker_id": "ATTACKER-002",
+      "total_events": 8,
+      "event_types": [
+        "lateral_movement",
+        "powershell_execution",
+        "process_created",
+        "privilege_escalation",
+        "successful_login",
+        "credential_access",
+        "failed_login",
+        "data_access"
+      ],
+      "source_ips": [
+        "10.0.0.77",
+        "10.0.0.15",
+        "10.0.0.45"
+      ],
+      "hosts": [
+        "SERVER-01",
+        "SERVER-02",
+        "WORKSTATION-01",
+        "WORKSTATION-02"
+      ],
+      "high_severity_events": 3,
+      "risk_score": 100
+    },
+    {
+      "attacker_id": "ATTACKER-TEST",
+      "total_events": 1,
+      "event_types": [
+        "failed_login"
+      ],
+      "source_ips": [
+        "10.0.0.99"
+      ],
+      "hosts": [
+        "SERVER-TEST"
+      ],
+      "high_severity_events": 1,
+      "risk_score": 35
+    },
+    {
+      "attacker_id": "ATTACKER-NEW",
+      "total_events": 1,
+      "event_types": [
+        "failed_login"
+      ],
+      "source_ips": [
+        "192.168.1.50"
+      ],
+      "hosts": [
+        "SERVER-A"
+      ],
+      "high_severity_events": 1,
+      "risk_score": 35
+    }
+  ]
+}

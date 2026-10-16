@@ -1,0 +1,632 @@
+{
+  "mappings": [
+    {
+      "event_id": 114721,
+      "timestamp": "2026-08-21T00:09:06.117746",
+      "attacker_id": "ATTACKER-004",
+      "event_type": "lateral_movement",
+      "source_ip": "10.0.0.15",
+      "user": "svc_backup",
+      "host": "SERVER-02",
+      "severity": "high",
+      "mitre": {
+        "technique_id": "T1021",
+        "technique": "Remote Services",
+        "tactic": "Lateral Movement"
+      }
+    },
+    {
+      "event_id": 592408,
+      "timestamp": "2026-08-20T23:57:06.117746",
+      "attacker_id": "ATTACKER-003",
+      "event_type": "process_created",
+      "source_ip": "10.0.0.45",
+      "user": "user02",
+      "host": "WORKSTATION-02",
+      "severity": "low",
+      "mitre": {
+        "technique_id": "T1059",
+        "technique": "Command and Scripting Interpreter",
+        "tactic": "Execution"
+      }
+    },
+    {
+      "event_id": 649234,
+      "timestamp": "2026-08-21T00:07:06.117746",
+      "attacker_id": "ATTACKER-003",
+      "event_type": "privilege_escalation",
+      "source_ip": "10.0.0.21",
+      "user": "svc_backup",
+      "host": "WORKSTATION-01",
+      "severity": "high",
+      "mitre": {
+        "technique_id": "T1068",
+        "technique": "Exploitation for Privilege Escalation",
+        "tactic": "Privilege Escalation"
+      }
+    },
+    {
+      "event_id": 109052,
+      "timestamp": "2026-08-21T00:37:06.117746",
+      "attacker_id": "ATTACKER-005",
+      "event_type": "privilege_escalation",
+      "source_ip": "10.0.0.45",
+      "user": "user02",
+      "host": "SERVER-02",
+      "severity": "high",
+      "mitre": {
+        "technique_id": "T1068",
+        "technique": "Exploitation for Privilege Escalation",
+        "tactic": "Privilege Escalation"
+      }
+    },
+    {
+      "event_id": 208223,
+      "timestamp": "2026-08-21T00:21:06.117746",
+      "attacker_id": "ATTACKER-005",
+      "event_type": "data_access",
+      "source_ip": "10.0.0.21",
+      "user": "user01",
+      "host": "WORKSTATION-02",
+      "severity": "low",
+      "mitre": {
+        "technique_id": "T1005",
+        "technique": "Data from Local System",
+        "tactic": "Collection"
+      }
+    },
+    {
+      "event_id": 539833,
+      "timestamp": "2026-08-21T00:13:06.117746",
+      "attacker_id": "ATTACKER-004",
+      "event_type": "credential_access",
+      "source_ip": "10.0.0.21",
+      "user": "user01",
+      "host": "SERVER-01",
+      "severity": "high",
+      "mitre": {
+        "technique_id": "T1003",
+        "technique": "OS Credential Dumping",
+        "tactic": "Credential Access"
+      }
+    },
+    {
+      "event_id": 866068,
+      "timestamp": "2026-08-20T23:39:06.117746",
+      "attacker_id": "ATTACKER-001",
+      "event_type": "credential_access",
+      "source_ip": "10.0.0.45",
+      "user": "user02",
+      "host": "SERVER-02",
+      "severity": "high",
+      "mitre": {
+        "technique_id": "T1003",
+        "technique": "OS Credential Dumping",
+        "tactic": "Credential Access"
+      }
+    },
+    {
+      "event_id": 900616,
+      "timestamp": "2026-08-20T23:39:06.117746",
+      "attacker_id": "ATTACKER-001",
+      "event_type": "process_created",
+      "source_ip": "10.0.0.21",
+      "user": "user01",
+      "host": "SERVER-01",
+      "severity": "low",
+      "mitre": {
+        "technique_id": "T1059",
+        "technique": "Command and Scripting Interpreter",
+        "tactic": "Execution"
+      }
+    },
+    {
+      "event_id": 320822,
+      "timestamp": "2026-08-20T23:57:06.117746",
+      "attacker_id": "ATTACKER-004",
+      "event_type": "failed_login",
+      "source_ip": "10.0.0.77",
+      "user": "admin",
+      "host": "WORKSTATION-01",
+      "severity": "medium",
+      "mitre": {
+        "technique_id": "T1110",
+        "technique": "Brute Force",
+        "tactic": "Credential Access"
+      }
+    },
+    {
+      "event_id": 618540,
+      "timestamp": "2026-08-21T00:13:06.117746",
+      "attacker_id": "ATTACKER-005",
+      "event_type": "process_created",
+      "source_ip": "10.0.0.45",
+      "user": "admin",
+      "host": "SERVER-01",
+      "severity": "low",
+      "mitre": {
+        "technique_id": "T1059",
+        "technique": "Command and Scripting Interpreter",
+        "tactic": "Execution"
+      }
+    },
+    {
+      "event_id": 759504,
+      "timestamp": "2026-08-21T00:19:06.117746",
+      "attacker_id": "ATTACKER-002",
+      "event_type": "lateral_movement",
+      "source_ip": "10.0.0.77",
+      "user": "user01",
+      "host": "SERVER-01",
+      "severity": "high",
+      "mitre": {
+        "technique_id": "T1021",
+        "technique": "Remote Services",
+        "tactic": "Lateral Movement"
+      }
+    },
+    {
+      "event_id": 184797,
+      "timestamp": "2026-08-21T00:28:06.117746",
+      "attacker_id": "ATTACKER-005",
+      "event_type": "powershell_execution",
+      "source_ip": "10.0.0.77",
+      "user": "user02",
+      "host": "SERVER-02",
+      "severity": "low",
+      "mitre": {
+        "technique_id": "T1059.001",
+        "technique": "PowerShell",
+        "tactic": "Execution"
+      }
+    },
+    {
+      "event_id": 612351,
+      "timestamp": "2026-08-20T23:47:06.117746",
+      "attacker_id": "ATTACKER-003",
+      "event_type": "failed_login",
+      "source_ip": "10.0.0.77",
+      "user": "svc_backup",
+      "host": "WORKSTATION-01",
+      "severity": "low",
+      "mitre": {
+        "technique_id": "T1110",
+        "technique": "Brute Force",
+        "tactic": "Credential Access"
+      }
+    },
+    {
+      "event_id": 777984,
+      "timestamp": "2026-08-21T00:01:06.117746",
+      "attacker_id": "ATTACKER-002",
+      "event_type": "powershell_execution",
+      "source_ip": "10.0.0.15",
+      "user": "user01",
+      "host": "SERVER-02",
+      "severity": "medium",
+      "mitre": {
+        "technique_id": "T1059.001",
+        "technique": "PowerShell",
+        "tactic": "Execution"
+      }
+    },
+    {
+      "event_id": 682539,
+      "timestamp": "2026-08-20T23:43:06.117746",
+      "attacker_id": "ATTACKER-002",
+      "event_type": "process_created",
+      "source_ip": "10.0.0.15",
+      "user": "user01",
+      "host": "SERVER-01",
+      "severity": "low",
+      "mitre": {
+        "technique_id": "T1059",
+        "technique": "Command and Scripting Interpreter",
+        "tactic": "Execution"
+      }
+    },
+    {
+      "event_id": 780446,
+      "timestamp": "2026-08-21T00:17:06.117746",
+      "attacker_id": "ATTACKER-002",
+      "event_type": "privilege_escalation",
+      "source_ip": "10.0.0.45",
+      "user": "admin",
+      "host": "WORKSTATION-01",
+      "severity": "high",
+      "mitre": {
+        "technique_id": "T1068",
+        "technique": "Exploitation for Privilege Escalation",
+        "tactic": "Privilege Escalation"
+      }
+    },
+    {
+      "event_id": 851526,
+      "timestamp": "2026-08-21T00:12:06.117746",
+      "attacker_id": "ATTACKER-004",
+      "event_type": "privilege_escalation",
+      "source_ip": "10.0.0.77",
+      "user": "user02",
+      "host": "WORKSTATION-02",
+      "severity": "high",
+      "mitre": {
+        "technique_id": "T1068",
+        "technique": "Exploitation for Privilege Escalation",
+        "tactic": "Privilege Escalation"
+      }
+    },
+    {
+      "event_id": 310575,
+      "timestamp": "2026-08-20T23:39:06.117746",
+      "attacker_id": "ATTACKER-001",
+      "event_type": "lateral_movement",
+      "source_ip": "10.0.0.45",
+      "user": "user02",
+      "host": "WORKSTATION-02",
+      "severity": "high",
+      "mitre": {
+        "technique_id": "T1021",
+        "technique": "Remote Services",
+        "tactic": "Lateral Movement"
+      }
+    },
+    {
+      "event_id": 780767,
+      "timestamp": "2026-08-20T23:27:06.117746",
+      "attacker_id": "ATTACKER-001",
+      "event_type": "failed_login",
+      "source_ip": "10.0.0.77",
+      "user": "user02",
+      "host": "SERVER-02",
+      "severity": "low",
+      "mitre": {
+        "technique_id": "T1110",
+        "technique": "Brute Force",
+        "tactic": "Credential Access"
+      }
+    },
+    {
+      "event_id": 414829,
+      "timestamp": "2026-08-21T00:07:06.117746",
+      "attacker_id": "ATTACKER-005",
+      "event_type": "failed_login",
+      "source_ip": "10.0.0.15",
+      "user": "user02",
+      "host": "WORKSTATION-01",
+      "severity": "medium",
+      "mitre": {
+        "technique_id": "T1110",
+        "technique": "Brute Force",
+        "tactic": "Credential Access"
+      }
+    },
+    {
+      "event_id": 746737,
+      "timestamp": "2026-08-20T23:37:06.117746",
+      "attacker_id": "ATTACKER-001",
+      "event_type": "privilege_escalation",
+      "source_ip": "10.0.0.45",
+      "user": "user01",
+      "host": "SERVER-02",
+      "severity": "high",
+      "mitre": {
+        "technique_id": "T1068",
+        "technique": "Exploitation for Privilege Escalation",
+        "tactic": "Privilege Escalation"
+      }
+    },
+    {
+      "event_id": 684525,
+      "timestamp": "2026-08-21T00:35:06.117746",
+      "attacker_id": "ATTACKER-003",
+      "event_type": "lateral_movement",
+      "source_ip": "10.0.0.77",
+      "user": "admin",
+      "host": "WORKSTATION-02",
+      "severity": "high",
+      "mitre": {
+        "technique_id": "T1021",
+        "technique": "Remote Services",
+        "tactic": "Lateral Movement"
+      }
+    },
+    {
+      "event_id": 740136,
+      "timestamp": "2026-08-20T23:43:06.117746",
+      "attacker_id": "ATTACKER-002",
+      "event_type": "successful_login",
+      "source_ip": "10.0.0.15",
+      "user": "user01",
+      "host": "SERVER-02",
+      "severity": "medium",
+      "mitre": {
+        "technique_id": "T1078",
+        "technique": "Valid Accounts",
+        "tactic": "Initial Access"
+      }
+    },
+    {
+      "event_id": 963254,
+      "timestamp": "2026-08-20T23:57:06.117746",
+      "attacker_id": "ATTACKER-002",
+      "event_type": "credential_access",
+      "source_ip": "10.0.0.45",
+      "user": "user01",
+      "host": "WORKSTATION-02",
+      "severity": "high",
+      "mitre": {
+        "technique_id": "T1003",
+        "technique": "OS Credential Dumping",
+        "tactic": "Credential Access"
+      }
+    },
+    {
+      "event_id": 366864,
+      "timestamp": "2026-08-20T23:31:06.117746",
+      "attacker_id": "ATTACKER-001",
+      "event_type": "successful_login",
+      "source_ip": "10.0.0.21",
+      "user": "svc_backup",
+      "host": "SERVER-02",
+      "severity": "low",
+      "mitre": {
+        "technique_id": "T1078",
+        "technique": "Valid Accounts",
+        "tactic": "Initial Access"
+      }
+    },
+    {
+      "event_id": 990843,
+      "timestamp": "2026-08-21T00:43:06.117746",
+      "attacker_id": "ATTACKER-003",
+      "event_type": "data_access",
+      "source_ip": "10.0.0.21",
+      "user": "admin",
+      "host": "WORKSTATION-01",
+      "severity": "medium",
+      "mitre": {
+        "technique_id": "T1005",
+        "technique": "Data from Local System",
+        "tactic": "Collection"
+      }
+    },
+    {
+      "event_id": 763547,
+      "timestamp": "2026-08-21T00:08:06.117746",
+      "attacker_id": "ATTACKER-003",
+      "event_type": "powershell_execution",
+      "source_ip": "10.0.0.45",
+      "user": "svc_backup",
+      "host": "WORKSTATION-01",
+      "severity": "medium",
+      "mitre": {
+        "technique_id": "T1059.001",
+        "technique": "PowerShell",
+        "tactic": "Execution"
+      }
+    },
+    {
+      "event_id": 683465,
+      "timestamp": "2026-08-21T00:49:06.117746",
+      "attacker_id": "ATTACKER-005",
+      "event_type": "lateral_movement",
+      "source_ip": "10.0.0.45",
+      "user": "user01",
+      "host": "SERVER-01",
+      "severity": "high",
+      "mitre": {
+        "technique_id": "T1021",
+        "technique": "Remote Services",
+        "tactic": "Lateral Movement"
+      }
+    },
+    {
+      "event_id": 716722,
+      "timestamp": "2026-08-20T23:36:06.117746",
+      "attacker_id": "ATTACKER-001",
+      "event_type": "powershell_execution",
+      "source_ip": "10.0.0.45",
+      "user": "svc_backup",
+      "host": "SERVER-01",
+      "severity": "medium",
+      "mitre": {
+        "technique_id": "T1059.001",
+        "technique": "PowerShell",
+        "tactic": "Execution"
+      }
+    },
+    {
+      "event_id": 538900,
+      "timestamp": "2026-08-21T00:09:06.117746",
+      "attacker_id": "ATTACKER-001",
+      "event_type": "data_access",
+      "source_ip": "10.0.0.45",
+      "user": "user02",
+      "host": "SERVER-01",
+      "severity": "low",
+      "mitre": {
+        "technique_id": "T1005",
+        "technique": "Data from Local System",
+        "tactic": "Collection"
+      }
+    },
+    {
+      "event_id": 156011,
+      "timestamp": "2026-08-20T23:37:06.117746",
+      "attacker_id": "ATTACKER-002",
+      "event_type": "failed_login",
+      "source_ip": "10.0.0.45",
+      "user": "svc_backup",
+      "host": "WORKSTATION-01",
+      "severity": "medium",
+      "mitre": {
+        "technique_id": "T1110",
+        "technique": "Brute Force",
+        "tactic": "Credential Access"
+      }
+    },
+    {
+      "event_id": 291848,
+      "timestamp": "2026-08-21T00:39:06.117746",
+      "attacker_id": "ATTACKER-004",
+      "event_type": "data_access",
+      "source_ip": "10.0.0.21",
+      "user": "user01",
+      "host": "SERVER-02",
+      "severity": "low",
+      "mitre": {
+        "technique_id": "T1005",
+        "technique": "Data from Local System",
+        "tactic": "Collection"
+      }
+    },
+    {
+      "event_id": 920859,
+      "timestamp": "2026-08-21T00:05:06.117746",
+      "attacker_id": "ATTACKER-002",
+      "event_type": "data_access",
+      "source_ip": "10.0.0.15",
+      "user": "user02",
+      "host": "WORKSTATION-02",
+      "severity": "medium",
+      "mitre": {
+        "technique_id": "T1005",
+        "technique": "Data from Local System",
+        "tactic": "Collection"
+      }
+    },
+    {
+      "event_id": 981336,
+      "timestamp": "2026-08-21T00:11:06.117746",
+      "attacker_id": "ATTACKER-003",
+      "event_type": "credential_access",
+      "source_ip": "10.0.0.45",
+      "user": "user02",
+      "host": "WORKSTATION-01",
+      "severity": "high",
+      "mitre": {
+        "technique_id": "T1003",
+        "technique": "OS Credential Dumping",
+        "tactic": "Credential Access"
+      }
+    },
+    {
+      "event_id": 896909,
+      "timestamp": "2026-08-21T00:23:06.117746",
+      "attacker_id": "ATTACKER-005",
+      "event_type": "credential_access",
+      "source_ip": "10.0.0.45",
+      "user": "admin",
+      "host": "WORKSTATION-02",
+      "severity": "high",
+      "mitre": {
+        "technique_id": "T1003",
+        "technique": "OS Credential Dumping",
+        "tactic": "Credential Access"
+      }
+    },
+    {
+      "event_id": 815335,
+      "timestamp": "2026-08-20T23:54:06.117746",
+      "attacker_id": "ATTACKER-003",
+      "event_type": "successful_login",
+      "source_ip": "10.0.0.45",
+      "user": "user02",
+      "host": "SERVER-02",
+      "severity": "low",
+      "mitre": {
+        "technique_id": "T1078",
+        "technique": "Valid Accounts",
+        "tactic": "Initial Access"
+      }
+    },
+    {
+      "event_id": 460642,
+      "timestamp": "2026-08-21T00:03:06.117746",
+      "attacker_id": "ATTACKER-004",
+      "event_type": "powershell_execution",
+      "source_ip": "10.0.0.77",
+      "user": "svc_backup",
+      "host": "WORKSTATION-01",
+      "severity": "low",
+      "mitre": {
+        "technique_id": "T1059.001",
+        "technique": "PowerShell",
+        "tactic": "Execution"
+      }
+    },
+    {
+      "event_id": 990648,
+      "timestamp": "2026-08-21T00:03:06.117746",
+      "attacker_id": "ATTACKER-004",
+      "event_type": "successful_login",
+      "source_ip": "10.0.0.15",
+      "user": "admin",
+      "host": "SERVER-01",
+      "severity": "medium",
+      "mitre": {
+        "technique_id": "T1078",
+        "technique": "Valid Accounts",
+        "tactic": "Initial Access"
+      }
+    },
+    {
+      "event_id": 581225,
+      "timestamp": "2026-08-21T00:14:06.117746",
+      "attacker_id": "ATTACKER-005",
+      "event_type": "successful_login",
+      "source_ip": "10.0.0.15",
+      "user": "admin",
+      "host": "WORKSTATION-02",
+      "severity": "low",
+      "mitre": {
+        "technique_id": "T1078",
+        "technique": "Valid Accounts",
+        "tactic": "Initial Access"
+      }
+    },
+    {
+      "event_id": 713609,
+      "timestamp": "2026-08-21T00:09:06.117746",
+      "attacker_id": "ATTACKER-004",
+      "event_type": "process_created",
+      "source_ip": "10.0.0.45",
+      "user": "user02",
+      "host": "SERVER-02",
+      "severity": "medium",
+      "mitre": {
+        "technique_id": "T1059",
+        "technique": "Command and Scripting Interpreter",
+        "tactic": "Execution"
+      }
+    },
+    {
+      "event_id": 999999,
+      "attacker_id": "ATTACKER-TEST",
+      "timestamp": "2026-09-06T16:03:31.207868",
+      "event_type": "failed_login",
+      "source_ip": "10.0.0.99",
+      "host": "SERVER-TEST",
+      "severity": "high",
+      "mitre": {
+        "technique_id": "T1110",
+        "technique": "Brute Force",
+        "tactic": "Credential Access"
+      }
+    },
+    {
+      "event_id": 999001,
+      "attacker_id": "ATTACKER-NEW",
+      "timestamp": "2026-09-09T06:00:01.186919",
+      "event_type": "failed_login",
+      "source_ip": "192.168.1.50",
+      "host": "SERVER-A",
+      "severity": "high",
+      "mitre": {
+        "technique_id": "T1110",
+        "technique": "Brute Force",
+        "tactic": "Credential Access"
+      }
+    }
+  ]
+}

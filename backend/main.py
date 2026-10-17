@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 import json
@@ -8,6 +8,13 @@ from typing import Dict, Any
 
 from collector import collect_event
 from deception import analyze_event, analyze_events
+from genomics import perform_cyber_blast, APT_GENOMES
+from rule_generator import generate_rules_bundle
+from scenarios import SCENARIOS, get_scenario_events_with_timestamps
+from pathologist import generate_pathologist_briefing
+from stix_export import generate_stix_bundle
+from copilot import query_copilot
+from honeyshell import process_honeyshell_command
 
 
 # ============================================================
@@ -76,19 +83,24 @@ PREDICTION_FILE = DATA_DIR / "prediction.json"
 
 
 # ============================================================
-# JSON HELPERS
+# JSON HELPERS WITH IN-MEMORY FAST CACHE
 # ============================================================
 
-def load_json(filename: str):
-    file_path = DATA_DIR / filename
+_DATA_CACHE = {}
 
+def load_json(filename: str, force_reload: bool = False):
+    if not force_reload and filename in _DATA_CACHE:
+        return _DATA_CACHE[filename]
+
+    file_path = DATA_DIR / filename
     if not file_path.exists():
         return {}
 
     try:
         with open(file_path, "r", encoding="utf-8") as file:
-            return json.load(file)
-
+            data = json.load(file)
+            _DATA_CACHE[filename] = data
+            return data
     except Exception as e:
         print(f"Error loading {filename}: {e}")
         return {}
@@ -96,13 +108,12 @@ def load_json(filename: str):
 
 def save_json(filename: str, data):
     DATA_DIR.mkdir(parents=True, exist_ok=True)
+    _DATA_CACHE[filename] = data
 
     file_path = DATA_DIR / filename
-
     try:
         with open(file_path, "w", encoding="utf-8") as file:
             json.dump(data, file, indent=2)
-
     except Exception as e:
         print(f"Error saving {filename}: {e}")
         raise
@@ -499,6 +510,9 @@ def dashboard():
     predictions = predictions_data.get("predictions", [])
     deception = analyze_events(events)
 
+    # Calculate overall Cyber-BLAST alignment across all events
+    blast_result = perform_cyber_blast(events)
+
     return {
         "system": "ATTACK DNA X",
         "summary": {
@@ -508,7 +522,9 @@ def dashboard():
             "graph_edges": len(edges),
             "mitre_events": len(mitre),
             "predictions": len(predictions),
-            "deception_events": len(deception)
+            "deception_events": len(deception),
+            "top_attribution": blast_result.get("top_match", {}).get("name", "Unknown"),
+            "attribution_score": blast_result.get("top_match", {}).get("match_percentage", 0)
         },
         "events": events,
         "attackers": attackers,
@@ -524,5 +540,388 @@ def dashboard():
             "active": len(deception) > 0,
             "events": len(deception),
             "actions": deception
-        }
+        },
+        "blast": blast_result,
+        "scenarios": [
+            {"id": s["id"], "title": s["title"], "description": s["description"], "danger": s["danger"]}
+            for s in SCENARIOS.values()
+        ]
     }
+
+
+# ============================================================
+# CYBER-BLAST SEQUENCE ALIGNMENT ENDPOINT
+# ============================================================
+
+@app.get("/blast")
+def get_cyber_blast(attacker_id: str = None):
+    events_data = load_json("events.json")
+    all_events = events_data.get("events", [])
+
+    if attacker_id and attacker_id != "ALL":
+        target_events = [e for e in all_events if e.get("attacker_id") == attacker_id]
+    else:
+        target_events = all_events
+
+    blast_analysis = perform_cyber_blast(target_events)
+    return {
+        "attacker_id": attacker_id or "ALL",
+        "analysis": blast_analysis
+    }
+
+
+# ============================================================
+# AUTOMATED RULE GENERATOR ENDPOINT (SIGMA / YARA / SNORT)
+# ============================================================
+
+@app.get("/rules/{attacker_id}")
+def get_attacker_rules(attacker_id: str):
+    events_data = load_json("events.json")
+    all_events = events_data.get("events", [])
+    
+    if attacker_id == "ALL":
+        target_events = all_events
+    else:
+        target_events = [e for e in all_events if e.get("attacker_id") == attacker_id]
+
+    if not target_events:
+        target_events = all_events[:5] if all_events else []
+
+    rules = generate_rules_bundle(attacker_id, target_events)
+    return {
+        "attacker_id": attacker_id,
+        "rules": rules
+    }
+
+
+# ============================================================
+# AI THREAT PATHOLOGIST CLINICAL BRIEFING
+# ============================================================
+
+@app.get("/pathologist/{attacker_id}")
+def get_pathologist_report(attacker_id: str):
+    events_data = load_json("events.json")
+    all_events = events_data.get("events", [])
+
+    if attacker_id and attacker_id != "ALL":
+        target_events = [e for e in all_events if e.get("attacker_id") == attacker_id]
+    else:
+        target_events = all_events
+
+    report = generate_pathologist_briefing(attacker_id or "GLOBAL", target_events)
+    return report
+
+
+# ============================================================
+# SIMULATION SCENARIO RUNNER
+# ============================================================
+
+@app.get("/scenarios")
+def list_scenarios():
+    return [
+        {
+            "id": s["id"],
+            "title": s["title"],
+            "description": s["description"],
+            "danger": s["danger"],
+            "target": s["target"],
+            "event_count": len(s["events"])
+        }
+        for s in SCENARIOS.values()
+    ]
+
+
+@app.post("/simulate/{scenario_id}")
+async def trigger_simulation(scenario_id: str):
+    scenario = SCENARIOS.get(scenario_id)
+    if not scenario:
+        raise HTTPException(status_code=404, detail="Scenario not found")
+
+    new_events = get_scenario_events_with_timestamps(scenario_id)
+    events_data = load_json("events.json")
+    events = events_data.get("events", [])
+
+    # Prepend or append new simulation events
+    events.extend(new_events)
+    save_json("events.json", {"events": events})
+
+    pipeline = regenerate_pipeline()
+    blast_result = perform_cyber_blast(new_events)
+
+    # Broadcast simulation event to active WebSockets
+    await manager.broadcast({
+        "type": "simulation_trigger",
+        "scenario": scenario["title"],
+        "new_events_count": len(new_events),
+        "pipeline": pipeline,
+        "blast": blast_result
+    })
+
+    return {
+        "success": True,
+        "message": f"Simulation scenario '{scenario['title']}' executed successfully",
+        "events_added": len(new_events),
+        "pipeline": pipeline,
+        "blast": blast_result
+    }
+
+
+# ============================================================
+# LOG DROPZONE INGESTION (JSON / LOG / TEXT)
+# ============================================================
+
+@app.post("/ingest/log")
+async def ingest_raw_log(payload: Dict[str, Any]):
+    log_text = payload.get("log_text", "")
+    attacker_id = payload.get("attacker_id", "ANON-INGEST")
+
+    if not log_text:
+        raise HTTPException(status_code=400, detail="Empty log content")
+
+    lines = [line.strip() for line in log_text.splitlines() if line.strip()]
+    events_data = load_json("events.json")
+    events = events_data.get("events", [])
+
+    added = []
+    base_time = asyncio.get_event_loop().time()
+
+    for idx, line in enumerate(lines[:50]):  # cap at 50 per batch
+        event_type = "process_created"
+        low = line.lower()
+        if "failed" in low or "4625" in low or "denied" in low:
+            event_type = "failed_login"
+        elif "powershell" in low or "pwsh" in low:
+            event_type = "powershell_execution"
+        elif "lsass" in low or "mimikatz" in low or "dump" in low:
+            event_type = "credential_access"
+        elif "escalat" in low or "system" in low or "uac" in low:
+            event_type = "privilege_escalation"
+        elif "lateral" in low or "smb" in low or "psexec" in low:
+            event_type = "lateral_movement"
+        elif "login" in low or "4624" in low:
+            event_type = "successful_login"
+
+        ev = {
+            "event_id": f"INGEST-{abs(hash(line)) % 100000:05d}",
+            "attacker_id": attacker_id,
+            "event_type": event_type,
+            "severity": "HIGH" if "critical" in low or "high" in low else "MEDIUM",
+            "source_ip": "10.0.99.12",
+            "user": "ingest_user",
+            "host": "TARGET-NODE",
+            "details": line[:180],
+            "timestamp": "2026-10-16T10:15:00Z"
+        }
+        events.append(ev)
+        added.append(ev)
+
+    save_json("events.json", {"events": events})
+    pipeline = regenerate_pipeline()
+
+    await manager.broadcast({
+        "type": "log_ingested",
+        "count": len(added),
+        "pipeline": pipeline
+    })
+
+    return {
+        "success": True,
+        "ingested_count": len(added),
+        "pipeline": pipeline
+    }
+
+
+# ============================================================
+# STIX 2.1 THREAT INTEL BUNDLE EXPORT
+# ============================================================
+
+@app.get("/export/stix/{attacker_id}")
+def export_stix(attacker_id: str):
+    events_data = load_json("events.json")
+    all_events = events_data.get("events", [])
+    
+    if attacker_id != "ALL":
+        target_events = [e for e in all_events if e.get("attacker_id") == attacker_id]
+    else:
+        target_events = all_events
+
+    blast_result = perform_cyber_blast(target_events)
+    bundle = generate_stix_bundle(attacker_id, target_events, blast_result)
+    return bundle
+
+
+# ============================================================
+# LIVE HONEYPOT DECEPTION TRIPWIRE ENDPOINT
+# ============================================================
+
+@app.api_route("/trap/{trap_type}", methods=["GET", "POST"])
+async def trigger_honeypot(trap_type: str, request: Request):
+    client_ip = request.client.host if request.client else "127.0.0.1"
+    user_agent = request.headers.get("user-agent", "Unknown-Scanner")
+
+    events_data = load_json("events.json")
+    events = events_data.get("events", [])
+
+    trap_event = {
+        "event_id": f"TRAP-{int(asyncio.get_event_loop().time() * 1000) % 100000:05d}",
+        "attacker_id": f"PROBE-{client_ip.replace('.', '_')[-8:]}",
+        "event_type": "credential_access" if "cred" in trap_type or "admin" in trap_type else "lateral_movement",
+        "severity": "CRITICAL",
+        "source_ip": client_ip,
+        "user": "canary_trap_service",
+        "host": "HONEYPOT-DECOY-TRAP",
+        "details": f"Honeypot tripwire [{trap_type.upper()}] touched by {client_ip} (UA: {user_agent[:60]})",
+        "timestamp": "2026-10-16T10:32:00Z"
+    }
+
+    events.append(trap_event)
+    save_json("events.json", {"events": events})
+    pipeline = regenerate_pipeline()
+
+    # Broadcast live alert to all dashboard WebSockets
+    await manager.broadcast({
+        "type": "honeytoken_tripped",
+        "message": f"🚨 HONEYPOT TRIPPED! Decoy [{trap_type}] accessed from {client_ip}",
+        "event": trap_event,
+        "pipeline": pipeline
+    })
+
+    return {
+        "status": "decoy_response",
+        "notice": "Authentication challenge failed. Access denied.",
+        "simulated_token": f"canary_token_revoked_{trap_type}"
+    }
+
+
+# ============================================================
+# SYSTEM DATA RESET TO CLEAN BASELINE
+# ============================================================
+
+@app.post("/reset")
+async def reset_data():
+    sample_scenario = get_scenario_events_with_timestamps("APT29_ESPIONAGE")
+    save_json("events.json", {"events": sample_scenario})
+    pipeline = regenerate_pipeline()
+    blast_result = perform_cyber_blast(sample_scenario)
+
+    await manager.broadcast({
+        "type": "system_reset",
+        "message": "System restored to clean baseline state",
+        "pipeline": pipeline
+    })
+
+    return {
+        "success": True,
+        "message": "System data reset to baseline",
+        "pipeline": pipeline
+    }
+
+
+# ============================================================
+# AUTONOMOUS AI COPILOT QUERY ENDPOINT
+# ============================================================
+
+@app.post("/copilot/query")
+def copilot_query(payload: Dict[str, Any]):
+    prompt = payload.get("prompt", "")
+    attacker_id = payload.get("attacker_id", "ALL")
+
+    events_data = load_json("events.json")
+    all_events = events_data.get("events", [])
+    
+    if attacker_id != "ALL":
+        target_events = [e for e in all_events if e.get("attacker_id") == attacker_id]
+    else:
+        target_events = all_events
+
+    blast_result = perform_cyber_blast(target_events)
+    response = query_copilot(prompt, attacker_id, target_events, blast_result)
+    return response
+
+
+# ============================================================
+# INTERACTIVE HONEYSHELL CLI EXECUTION
+# ============================================================
+
+@app.post("/honeyshell/execute")
+async def execute_honeyshell_command(payload: Dict[str, Any]):
+    cmd = payload.get("command", "")
+    attacker_id = payload.get("attacker_id", "SHELL-INTRUDER")
+
+    if not cmd.strip():
+        raise HTTPException(status_code=400, detail="Empty command")
+
+    output, event = process_honeyshell_command(cmd, attacker_id)
+
+    events_data = load_json("events.json")
+    events = events_data.get("events", [])
+    events.append(event)
+    save_json("events.json", {"events": events})
+
+    pipeline = regenerate_pipeline()
+    blast_result = perform_cyber_blast(events)
+
+    await manager.broadcast({
+        "type": "honeyshell_action",
+        "command": cmd,
+        "event": event,
+        "pipeline": pipeline,
+        "blast": blast_result
+    })
+
+    return {
+        "command": cmd,
+        "output": output,
+        "event": event,
+        "pipeline": pipeline
+    }
+
+
+# ============================================================
+# SURGICAL ENTERPRISE IMMUNIZATION PROTOCOL
+# ============================================================
+
+@app.post("/immunize")
+async def execute_immunization(payload: Dict[str, Any] = None):
+    events_data = load_json("events.json")
+    events = events_data.get("events", [])
+
+    compromised_hosts = list(set(e.get("host", "ENDPOINT-01") for e in events if e.get("host")))
+    compromised_users = list(set(e.get("user", "admin") for e in events if e.get("user")))
+
+    isolation_ledger = [
+        {
+            "target": host,
+            "action": "NETWORK_ISOLATION_EDR_ENGAGED",
+            "status": "SEVERED",
+            "interface": "eth0 / vEthernet"
+        }
+        for host in compromised_hosts
+    ]
+
+    revocation_ledger = [
+        {
+            "user": user,
+            "action": "KERBEROS_TGT_INVALIDATION",
+            "status": "REVOKED",
+            "realm": "CORP.ENTERPRISE.LOCAL"
+        }
+        for user in compromised_users
+    ]
+
+    await manager.broadcast({
+        "type": "immunization_executed",
+        "message": f"SURGICAL IMMUNIZATION COMPLETED: {len(compromised_hosts)} hosts isolated, {len(compromised_users)} tokens revoked.",
+        "isolated_hosts": compromised_hosts
+    })
+
+    return {
+        "success": True,
+        "timestamp": "2026-10-16T10:49:00Z",
+        "isolated_hosts_count": len(compromised_hosts),
+        "revoked_tokens_count": len(compromised_users),
+        "isolation_ledger": isolation_ledger,
+        "revocation_ledger": revocation_ledger
+    }
+
+

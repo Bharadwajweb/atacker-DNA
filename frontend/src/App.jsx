@@ -19,7 +19,7 @@ import ExecutiveDossierModal from "./components/ExecutiveDossierModal";
 import ImmunizeModal from "./components/ImmunizeModal";
 import AuthGate from "./components/AuthGate";
 import { playAlertChime, playTacticalClick, speakTacticalAlert } from "./utils/audio";
-import { Shield, Dna, LayoutGrid, Radar, Network, Sparkles } from "lucide-react";
+import { Shield, Dna, LayoutGrid, Radar, Network, Sparkles, Keyboard, X } from "lucide-react";
 
 const API_BASE = "http://127.0.0.1:8000";
 const WS_BASE = "ws://127.0.0.1:8000/ws";
@@ -52,6 +52,7 @@ export default function App() {
   const [isCopilotOpen, setIsCopilotOpen] = useState(false);
   const [isDossierOpen, setIsDossierOpen] = useState(false);
   const [isImmunizeOpen, setIsImmunizeOpen] = useState(false);
+  const [showShortcuts, setShowShortcuts] = useState(false);
 
   // Apply theme to document element
   useEffect(() => {
@@ -62,6 +63,53 @@ export default function App() {
       // ignore
     }
   }, [theme]);
+
+  // Global Tactical Keyboard Shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (["INPUT", "TEXTAREA", "SELECT"].includes(e.target.tagName)) return;
+
+      if (e.key === "1") { playTacticalClick(); setActiveDeckTab("ALL"); }
+      else if (e.key === "2") { playTacticalClick(); setActiveDeckTab("GENOME"); }
+      else if (e.key === "3") { playTacticalClick(); setActiveDeckTab("ATTRIBUTION"); }
+      else if (e.key === "4") { playTacticalClick(); setActiveDeckTab("TOPOLOGY"); }
+      else if (e.key === "5") { playTacticalClick(); setActiveDeckTab("DEFENSE"); }
+      else if (e.key === "6") { playTacticalClick(); setActiveDeckTab("WAR_GAME"); }
+      else if (e.key === "t" || e.key === "T") {
+        playTacticalClick();
+        const themes = ["matrix", "tokyo", "solaris", "arctic"];
+        setTheme(curr => themes[(themes.indexOf(curr) + 1) % themes.length]);
+      }
+      else if (e.key === "c" || e.key === "C") {
+        playTacticalClick();
+        setIsCopilotOpen(prev => !prev);
+      }
+      else if (e.key === "d" || e.key === "D") {
+        playTacticalClick();
+        setIsDossierOpen(prev => !prev);
+      }
+      else if (e.key === "i" || e.key === "I") {
+        playAlertChime();
+        setIsImmunizeOpen(prev => !prev);
+      }
+      else if (e.key === "m" || e.key === "M") {
+        setScanlines(prev => !prev);
+      }
+      else if (e.key === "?") {
+        playTacticalClick();
+        setShowShortcuts(prev => !prev);
+      }
+      else if (e.key === "Escape") {
+        setIsCopilotOpen(false);
+        setIsDossierOpen(false);
+        setIsImmunizeOpen(false);
+        setShowShortcuts(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   // Fetch complete dashboard state from backend
   const fetchDashboard = useCallback(async () => {
@@ -559,6 +607,127 @@ export default function App() {
           <Sparkles size={15} style={{ color: "var(--cyan-neon)" }} />
           <span>AI COPILOT</span>
         </button>
+      )}
+
+      {/* Floating Tactical Shortcuts [?] Button */}
+      <button
+        onClick={() => {
+          playTacticalClick();
+          setShowShortcuts(true);
+        }}
+        title="View HUD Tactical Keyboard Shortcuts [?]"
+        style={{
+          position: "fixed",
+          bottom: 24,
+          right: isCopilotOpen ? 460 : 160,
+          zIndex: 998,
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          padding: "12px 16px",
+          background: "var(--bg-card)",
+          border: "1px solid var(--border-subtle)",
+          borderRadius: 30,
+          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.6)",
+          cursor: "pointer",
+          color: "var(--cyan-neon)",
+          fontFamily: "var(--font-mono)",
+          fontSize: 12,
+          fontWeight: 800,
+          transition: "all 0.25s ease"
+        }}
+      >
+        <Keyboard size={15} />
+        <span>HOTKEYS [?]</span>
+      </button>
+
+      {/* HUD Keyboard Shortcuts Modal */}
+      {showShortcuts && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(2, 6, 17, 0.85)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            zIndex: 999999,
+            display: "grid",
+            placeItems: "center",
+            padding: 24,
+            animation: "fadeIn 0.2s ease"
+          }}
+          onClick={() => setShowShortcuts(false)}
+        >
+          <div
+            className="glass-panel hud-corner"
+            style={{
+              maxWidth: 580,
+              width: "100%",
+              padding: 28,
+              boxShadow: "0 0 45px var(--cyan-glow)"
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <Keyboard size={20} style={{ color: "var(--cyan-neon)" }} />
+                <h3 style={{ fontSize: 18, fontWeight: 900, fontFamily: "var(--font-display)", color: "#ffffff" }}>
+                  TACTICAL HUD SHORTCUTS
+                </h3>
+              </div>
+              <button
+                onClick={() => setShowShortcuts(false)}
+                style={{ background: "transparent", border: "none", color: "var(--text-muted)", cursor: "pointer" }}
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, fontFamily: "var(--font-mono)", fontSize: 12 }}>
+              {[
+                { key: "1 - 6", desc: "Switch Command Deck Tabs" },
+                { key: "T", desc: "Cycle Cyber Themes" },
+                { key: "C", desc: "Toggle AI Copilot" },
+                { key: "D", desc: "Executive Dossier" },
+                { key: "I", desc: "Surgical Immunization" },
+                { key: "M", desc: "Toggle CRT Scanlines" },
+                { key: "ESC", desc: "Close Active Modal" },
+                { key: "?", desc: "Toggle Hotkeys Help" }
+              ].map((item, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "10px 14px",
+                    background: "var(--bg-void)",
+                    border: "1px solid var(--border-subtle)",
+                    borderRadius: 8
+                  }}
+                >
+                  <span style={{ color: "var(--text-secondary)" }}>{item.desc}</span>
+                  <kbd
+                    style={{
+                      padding: "3px 8px",
+                      background: "rgba(0, 255, 157, 0.15)",
+                      border: "1px solid var(--border-glow)",
+                      borderRadius: 4,
+                      color: "var(--cyan-neon)",
+                      fontWeight: 800
+                    }}
+                  >
+                    {item.key}
+                  </kbd>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ textAlign: "center", marginTop: 20, fontSize: 11, color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
+              Press [ESC] or click outside to dismiss
+            </div>
+          </div>
+        </div>
       )}
 
       {/* Autonomous AI Cyber Copilot Drawer */}

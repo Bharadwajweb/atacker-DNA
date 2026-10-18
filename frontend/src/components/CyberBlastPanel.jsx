@@ -23,7 +23,7 @@ export default function CyberBlastPanel({ blastData }) {
   return (
     <div className="glass-panel" style={{ padding: 24, position: "relative" }}>
       {/* Header */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20, flexWrap: "wrap", gap: 14 }}>
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <span className="cyber-badge" style={{ background: "rgba(255, 42, 95, 0.15)", color: "var(--crimson-neon)", border: "1px solid rgba(255, 42, 95, 0.4)" }}>
@@ -60,9 +60,9 @@ export default function CyberBlastPanel({ blastData }) {
       </div>
 
       {/* Main Grid: APT Tabs on Left, Detailed Alignment on Right */}
-      <div style={{ display: "grid", gridTemplateColumns: "minmax(280px, 1fr) 2fr", gap: 20 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: 20, minWidth: 0 }}>
         {/* Left: Ranked Adversary Profiles */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 10, minWidth: 0 }}>
           <div style={{ fontSize: 11, fontFamily: "var(--font-mono)", color: "var(--text-muted)", textTransform: "uppercase" }}>
             HOMOLOGY RANKING TABLE:
           </div>
@@ -135,11 +135,13 @@ export default function CyberBlastPanel({ blastData }) {
             background: "rgba(5, 11, 24, 0.8)",
             border: "1px solid rgba(0, 240, 255, 0.25)",
             borderRadius: 12,
-            padding: 20
+            padding: 20,
+            minWidth: 0,
+            overflow: "hidden"
           }}
         >
           {/* Dossier Top Bar */}
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", borderBottom: "1px solid rgba(30, 58, 95, 0.5)", paddingBottom: 16, marginBottom: 16 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", borderBottom: "1px solid rgba(30, 58, 95, 0.5)", paddingBottom: 16, marginBottom: 16, flexWrap: "wrap", gap: 12 }}>
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 <h3 style={{ fontSize: 20, fontWeight: 900, color: "#ffffff" }}>{selectedApt.name}</h3>
@@ -162,7 +164,7 @@ export default function CyberBlastPanel({ blastData }) {
           </div>
 
           {/* Alignment Visualization (Bioinformatics format) */}
-          <div style={{ marginBottom: 20 }}>
+          <div style={{ marginBottom: 20, minWidth: 0 }}>
             <div style={{ fontSize: 11, fontFamily: "var(--font-mono)", color: "var(--text-muted)", marginBottom: 10 }}>
               SMITH-WATERMAN BIOINFORMATICS STRAND ALIGNMENT:
             </div>
@@ -175,12 +177,13 @@ export default function CyberBlastPanel({ blastData }) {
                 padding: "16px",
                 fontFamily: "var(--font-mono)",
                 fontSize: 12,
-                overflowX: "auto"
+                overflowX: "auto",
+                maxWidth: "100%"
               }}
             >
               {/* Reference Strand */}
-              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 6 }}>
-                <span style={{ width: 90, color: "#94a3b8", fontWeight: 700 }}>REF [APT]:</span>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 6, minWidth: "max-content" }}>
+                <span style={{ width: 90, flexShrink: 0, color: "#94a3b8", fontWeight: 700 }}>REF [APT]:</span>
                 <div style={{ display: "flex", gap: 6 }}>
                   {selectedApt.aligned_reference.map((ref, idx) => (
                     <span
@@ -190,7 +193,8 @@ export default function CyberBlastPanel({ blastData }) {
                         background: ref === "— GAP —" ? "rgba(239, 68, 68, 0.2)" : "rgba(30, 58, 95, 0.5)",
                         borderRadius: 4,
                         color: ref === "— GAP —" ? "#f87171" : "#38bdf8",
-                        border: "1px solid rgba(30, 58, 95, 0.6)"
+                        border: "1px solid rgba(30, 58, 95, 0.6)",
+                        whiteSpace: "nowrap"
                       }}
                     >
                       {ref}
@@ -200,8 +204,8 @@ export default function CyberBlastPanel({ blastData }) {
               </div>
 
               {/* Match connector ticks */}
-              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 6 }}>
-                <span style={{ width: 90, color: "#64748b" }}>HOMOLOGY:</span>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 6, minWidth: "max-content" }}>
+                <span style={{ width: 90, flexShrink: 0, color: "#64748b" }}>HOMOLOGY:</span>
                 <div style={{ display: "flex", gap: 6 }}>
                   {selectedApt.aligned_observed.map((obs, idx) => {
                     const ref = selectedApt.aligned_reference[idx];
@@ -224,8 +228,8 @@ export default function CyberBlastPanel({ blastData }) {
               </div>
 
               {/* Observed Strand */}
-              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <span style={{ width: 90, color: "var(--cyan-neon)", fontWeight: 700 }}>OBSERVED:</span>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, minWidth: "max-content" }}>
+                <span style={{ width: 90, flexShrink: 0, color: "var(--cyan-neon)", fontWeight: 700 }}>OBSERVED:</span>
                 <div style={{ display: "flex", gap: 6 }}>
                   {selectedApt.aligned_observed.map((obs, idx) => {
                     const ref = selectedApt.aligned_reference[idx];
@@ -238,7 +242,8 @@ export default function CyberBlastPanel({ blastData }) {
                           background: isMatch ? "rgba(16, 185, 129, 0.15)" : "rgba(255, 42, 95, 0.15)",
                           borderRadius: 4,
                           color: isMatch ? "var(--emerald-neon)" : "var(--crimson-neon)",
-                          border: isMatch ? "1px solid rgba(16, 185, 129, 0.4)" : "1px solid rgba(255, 42, 95, 0.4)"
+                          border: isMatch ? "1px solid rgba(16, 185, 129, 0.4)" : "1px solid rgba(255, 42, 95, 0.4)",
+                          whiteSpace: "nowrap"
                         }}
                       >
                         {obs}

@@ -297,7 +297,11 @@ html, body {
   box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
-  contain: layout style;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  box-sizing: border-box;
 }
 
 .glass-panel:hover {

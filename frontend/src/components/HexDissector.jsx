@@ -47,7 +47,7 @@ export default function HexDissector({ selectedEvent }) {
   return (
     <div className="glass-panel" style={{ padding: 24, position: "relative" }}>
       {/* Header */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16, flexWrap: "wrap", gap: 12 }}>
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <span
@@ -73,7 +73,7 @@ export default function HexDissector({ selectedEvent }) {
         </div>
 
         {/* Packet Meta Badges */}
-        <div style={{ display: "flex", gap: 8 }}>
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
           <span className="cyber-badge" style={{ background: "rgba(16, 185, 129, 0.15)", color: "var(--emerald-neon)" }}>
             TCP / 443
           </span>
@@ -92,41 +92,45 @@ export default function HexDissector({ selectedEvent }) {
           padding: 16,
           fontFamily: "'JetBrains Mono', monospace",
           fontSize: 12,
-          overflowX: "auto"
+          overflowX: "auto",
+          maxWidth: "100%",
+          minWidth: 0
         }}
       >
-        <div style={{ display: "flex", color: "#64748b", borderBottom: "1px solid rgba(30, 58, 95, 0.5)", paddingBottom: 6, marginBottom: 8 }}>
-          <span style={{ width: 110 }}>OFFSET</span>
-          <span style={{ flex: 1 }}>HEX DUMP (00 - 0F)</span>
-          <span style={{ width: 140 }}>ASCII DECODE</span>
-        </div>
-
-        {hexLines.map((line, idx) => (
-          <div
-            key={idx}
-            style={{
-              display: "flex",
-              lineHeight: 1.8,
-              transition: "background 0.15s ease"
-            }}
-          >
-            <span style={{ width: 110, color: "var(--cyan-neon)", fontWeight: 700 }}>
-              {line.offset}:
-            </span>
-            <span style={{ flex: 1, color: "#38bdf8", letterSpacing: "0.05em" }}>
-              {line.hex}
-            </span>
-            <span style={{ width: 140, color: "var(--emerald-neon)" }}>
-              |{line.ascii}|
-            </span>
+        <div style={{ minWidth: 540 }}>
+          <div style={{ display: "flex", color: "#64748b", borderBottom: "1px solid rgba(30, 58, 95, 0.5)", paddingBottom: 6, marginBottom: 8 }}>
+            <span style={{ width: 110 }}>OFFSET</span>
+            <span style={{ flex: 1 }}>HEX DUMP (00 - 0F)</span>
+            <span style={{ width: 140 }}>ASCII DECODE</span>
           </div>
-        ))}
+
+          {hexLines.map((line, idx) => (
+            <div
+              key={idx}
+              style={{
+                display: "flex",
+                lineHeight: 1.8,
+                transition: "background 0.15s ease"
+              }}
+            >
+              <span style={{ width: 110, color: "var(--cyan-neon)", fontWeight: 700 }}>
+                {line.offset}:
+              </span>
+              <span style={{ flex: 1, color: "#38bdf8", letterSpacing: "0.05em" }}>
+                {line.hex}
+              </span>
+              <span style={{ width: 140, color: "var(--emerald-neon)" }}>
+                |{line.ascii}|
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Payload Details */}
-      <div style={{ marginTop: 12, fontSize: 11, fontFamily: "var(--font-mono)", color: "#94a3b8" }}>
+      <div style={{ marginTop: 12, fontSize: 11, fontFamily: "var(--font-mono)", color: "#94a3b8", wordBreak: "break-all", overflowWrap: "anywhere" }}>
         DISSECTED COMMANDLINE / STRING:{" "}
-        <span style={{ color: "#ffffff" }}>{activeEvent.details || "No raw string attached"}</span>
+        <span style={{ color: "#ffffff", wordBreak: "break-all" }}>{activeEvent.details || "No raw string attached"}</span>
       </div>
     </div>
   );

@@ -495,7 +495,7 @@ export default function App() {
 
         {/* 2. 3D Cyber-DNA Double Helix Visualizer & Threat Radar */}
         {(activeDeckTab === "ALL" || activeDeckTab === "GENOME") && (
-          <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(460px, 1fr))", gap: 24 }}>
+          <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 460px), 1fr))", gap: 24, minWidth: 0 }}>
             <GenomeHelix3D
               events={scrubbedEvents}
               selectedAttacker={selectedAttacker}
@@ -510,7 +510,7 @@ export default function App() {
         {/* 3. Cyber-BLAST Attribution & Pathologist Report */}
         {(activeDeckTab === "ALL" || activeDeckTab === "ATTRIBUTION") && (
           <>
-            <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(460px, 1fr))", gap: 24 }}>
+            <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 460px), 1fr))", gap: 24, minWidth: 0 }}>
               <CyberBlastPanel blastData={dashboardData?.blast} />
               <PathologistReport
                 attackerId={selectedAttacker}
@@ -518,7 +518,7 @@ export default function App() {
               />
             </section>
             {/* Global Geopolitical Threat Trajectory Map */}
-            <section>
+            <section style={{ minWidth: 0 }}>
               <ThreatGeoMap topMatchId={dashboardData?.blast?.top_match?.apt_id} />
             </section>
           </>
@@ -527,14 +527,14 @@ export default function App() {
         {/* 4. Attack Graph, MITRE Heatmap & Forensic Hex Dissector */}
         {(activeDeckTab === "ALL" || activeDeckTab === "TOPOLOGY") && (
           <>
-            <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(460px, 1fr))", gap: 24 }}>
+            <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 460px), 1fr))", gap: 24, minWidth: 0 }}>
               <AttackGraphCanvas
                 graphData={dashboardData?.graph}
                 events={scrubbedEvents}
               />
               <MitreHeatmap events={scrubbedEvents} />
             </section>
-            <section>
+            <section style={{ minWidth: 0 }}>
               <HexDissector selectedEvent={scrubbedEvents[scrubbedEvents.length - 1]} />
             </section>
           </>
@@ -543,14 +543,14 @@ export default function App() {
         {/* 5. Rule Synthesizer, CRISPR Deception Grid & HoneyShell Deception CLI */}
         {(activeDeckTab === "ALL" || activeDeckTab === "DEFENSE") && (
           <>
-            <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(460px, 1fr))", gap: 24 }}>
+            <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 460px), 1fr))", gap: 24, minWidth: 0 }}>
               <RuleSynthesizer
                 attackerId={selectedAttacker}
                 apiBase={API_BASE}
               />
               <DeceptionGrid deceptionData={dashboardData?.deception} />
             </section>
-            <section>
+            <section style={{ minWidth: 0 }}>
               <HoneyShell
                 apiBase={API_BASE}
                 onCommandExecuted={fetchDashboard}
@@ -561,7 +561,7 @@ export default function App() {
 
         {/* 6. Live Breach Simulator Studio & Log Dropzone */}
         {(activeDeckTab === "ALL" || activeDeckTab === "WAR_GAME") && (
-          <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(460px, 1fr))", gap: 24 }}>
+          <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 460px), 1fr))", gap: 24, minWidth: 0 }}>
             <SimulationStudio
               apiBase={API_BASE}
               onSimulationComplete={fetchDashboard}

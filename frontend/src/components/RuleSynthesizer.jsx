@@ -48,7 +48,7 @@ export default function RuleSynthesizer({ attackerId = "ALL", apiBase = "http://
   return (
     <div className="glass-panel" style={{ padding: 24, position: "relative" }}>
       {/* Header */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20, flexWrap: "wrap", gap: 14 }}>
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <span className="cyber-badge" style={{ background: "rgba(16, 185, 129, 0.15)", color: "var(--emerald-neon)", border: "1px solid rgba(16, 185, 129, 0.4)" }}>
@@ -67,7 +67,7 @@ export default function RuleSynthesizer({ attackerId = "ALL", apiBase = "http://
         </div>
 
         {/* Copy / Export Buttons */}
-        <div style={{ display: "flex", gap: 8 }}>
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
           <button
             className="cyber-btn cyber-btn-cyan"
             style={{ padding: "6px 14px", fontSize: 12 }}
@@ -87,7 +87,7 @@ export default function RuleSynthesizer({ attackerId = "ALL", apiBase = "http://
       </div>
 
       {/* Tabs */}
-      <div style={{ display: "flex", gap: 8, marginBottom: 14 }}>
+      <div style={{ display: "flex", gap: 8, marginBottom: 14, flexWrap: "wrap", overflowX: "auto" }}>
         {[
           { id: "sigma", label: "SIGMA DETECTION RULE (YAML)", icon: FileCode },
           { id: "yara", label: "YARA MEMORY SIGNATURE", icon: Terminal },
@@ -116,7 +116,8 @@ export default function RuleSynthesizer({ attackerId = "ALL", apiBase = "http://
                 fontSize: 12,
                 fontWeight: 700,
                 cursor: "pointer",
-                transition: "all 0.2s ease"
+                transition: "all 0.2s ease",
+                whiteSpace: "nowrap"
               }}
             >
               <Icon size={14} /> {tab.label}
@@ -131,6 +132,9 @@ export default function RuleSynthesizer({ attackerId = "ALL", apiBase = "http://
         style={{
           maxHeight: 340,
           overflowY: "auto",
+          overflowX: "auto",
+          maxWidth: "100%",
+          minWidth: 0,
           fontSize: 12,
           position: "relative",
           opacity: loading ? 0.6 : 1,

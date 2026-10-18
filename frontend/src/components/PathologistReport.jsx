@@ -42,9 +42,9 @@ export default function PathologistReport({ attackerId = "ALL", apiBase = "http:
       : "var(--amber-neon)";
 
   return (
-    <div className="glass-panel" style={{ padding: 24, position: "relative" }}>
+    <div className="glass-panel" style={{ padding: 24, position: "relative", minWidth: 0 }}>
       {/* Header */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20, flexWrap: "wrap", gap: 14 }}>
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <span
@@ -75,7 +75,8 @@ export default function PathologistReport({ attackerId = "ALL", apiBase = "http:
             borderRadius: 8,
             display: "flex",
             alignItems: "center",
-            gap: 8
+            gap: 8,
+            flexShrink: 0
           }}
         >
           <Activity size={16} style={{ color: threatColor }} />
@@ -92,20 +93,21 @@ export default function PathologistReport({ attackerId = "ALL", apiBase = "http:
           border: "1px solid rgba(30, 58, 95, 0.6)",
           borderRadius: 10,
           padding: 18,
-          marginBottom: 20
+          marginBottom: 20,
+          minWidth: 0
         }}
       >
         <div style={{ fontSize: 11, fontFamily: "var(--font-mono)", color: "var(--cyan-neon)", marginBottom: 6 }}>
           PATHOLOGICAL CLINICAL SUMMARY:
         </div>
-        <p style={{ fontSize: 13, color: "#e2e8f0", lineHeight: 1.7 }}>
+        <p style={{ fontSize: 13, color: "#e2e8f0", lineHeight: 1.7, wordBreak: "break-word" }}>
           {report.executive_summary}
         </p>
 
-        <div style={{ display: "flex", gap: 20, marginTop: 14, paddingTop: 12, borderTop: "1px solid rgba(30, 58, 95, 0.5)", fontSize: 12 }}>
-          <div>
+        <div style={{ display: "flex", gap: 20, marginTop: 14, paddingTop: 12, borderTop: "1px solid rgba(30, 58, 95, 0.5)", fontSize: 12, flexWrap: "wrap", alignItems: "center" }}>
+          <div style={{ minWidth: 0 }}>
             <span style={{ color: "var(--text-muted)" }}>GENOMIC SIGNATURE:</span>{" "}
-            <span style={{ fontFamily: "var(--font-mono)", color: "var(--cyan-neon)", fontWeight: 700 }}>
+            <span style={{ fontFamily: "var(--font-mono)", color: "var(--cyan-neon)", fontWeight: 700, wordBreak: "break-all" }}>
               {report.genomic_signature}
             </span>
           </div>
@@ -117,12 +119,12 @@ export default function PathologistReport({ attackerId = "ALL", apiBase = "http:
       </div>
 
       {/* 4-Phase Containment Playbook */}
-      <div>
+      <div style={{ minWidth: 0 }}>
         <div style={{ fontSize: 11, fontFamily: "var(--font-mono)", color: "var(--text-muted)", marginBottom: 12, textTransform: "uppercase" }}>
           SURGICAL INCIDENT RESPONSE & CONTAINMENT PLAYBOOK:
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 14 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: 14, minWidth: 0 }}>
           {report.containment_playbook.map((step, idx) => (
             <div
               key={idx}
@@ -133,11 +135,13 @@ export default function PathologistReport({ attackerId = "ALL", apiBase = "http:
                 padding: 14,
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "space-between"
+                justifyContent: "space-between",
+                minWidth: 0,
+                wordBreak: "break-word"
               }}
             >
               <div>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8, flexWrap: "wrap", gap: 6 }}>
                   <span style={{ fontSize: 10, fontFamily: "var(--font-mono)", color: "var(--cyan-neon)", fontWeight: 700 }}>
                     {step.phase}
                   </span>
@@ -154,7 +158,7 @@ export default function PathologistReport({ attackerId = "ALL", apiBase = "http:
               </div>
 
               <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 12, fontSize: 11, color: "var(--emerald-neon)" }}>
-                <CheckCircle2 size={12} /> Playbook action ready for orchestration
+                <CheckCircle2 size={12} flexShrink={0} /> Playbook action ready for orchestration
               </div>
             </div>
           ))}

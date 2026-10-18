@@ -118,6 +118,156 @@
         "technique": "Data from Local System",
         "tactic": "Collection"
       }
+    },
+    {
+      "event_id": "TRAP-08229",
+      "attacker_id": "PROBE-27_0_0_1",
+      "event_type": "credential_access",
+      "severity": "CRITICAL",
+      "source_ip": "127.0.0.1",
+      "user": "canary_trap_service",
+      "host": "HONEYPOT-DECOY-TRAP",
+      "details": "Honeypot tripwire [CANARY_CREDENTIALS] touched by 127.0.0.1 (UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36)",
+      "timestamp": "2026-10-18T06:20:08Z",
+      "mitre": {
+        "technique_id": "T1003",
+        "technique": "OS Credential Dumping",
+        "tactic": "Credential Access"
+      }
+    },
+    {
+      "event_id": "SIM-LZ-01",
+      "attacker_id": "APT-LAZARUS-38",
+      "event_type": "process_created",
+      "severity": "MEDIUM",
+      "source_ip": "175.45.178.2",
+      "user": "node_deployer",
+      "host": "BUILD-SRV-09",
+      "details": "Trojanized npm postinstall script spawned hidden bash execution thread",
+      "time_offset_seconds": 0,
+      "timestamp": "2026-10-18T06:20:13.404548Z",
+      "mitre": {
+        "technique_id": "T1059",
+        "technique": "Command and Scripting Interpreter",
+        "tactic": "Execution"
+      }
+    },
+    {
+      "event_id": "SIM-LZ-02",
+      "attacker_id": "APT-LAZARUS-38",
+      "event_type": "powershell_execution",
+      "severity": "HIGH",
+      "source_ip": "175.45.178.2",
+      "user": "node_deployer",
+      "host": "BUILD-SRV-09",
+      "details": "PowerShell reflective DLL injection loaded custom wiper payload",
+      "time_offset_seconds": 18,
+      "timestamp": "2026-10-18T06:20:31.404548Z",
+      "mitre": {
+        "technique_id": "T1059.001",
+        "technique": "PowerShell",
+        "tactic": "Execution"
+      }
+    },
+    {
+      "event_id": "SIM-LZ-03",
+      "attacker_id": "APT-LAZARUS-38",
+      "event_type": "failed_login",
+      "severity": "MEDIUM",
+      "source_ip": "175.45.178.2",
+      "user": "vault_keeper",
+      "host": "VAULT-SIGNER-01",
+      "details": "Repeated challenge failures on ECDSA hardware security module interface",
+      "time_offset_seconds": 35,
+      "timestamp": "2026-10-18T06:20:48.404548Z",
+      "mitre": {
+        "technique_id": "T1110",
+        "technique": "Brute Force",
+        "tactic": "Credential Access"
+      }
+    },
+    {
+      "event_id": "SIM-LZ-04",
+      "attacker_id": "APT-LAZARUS-38",
+      "event_type": "credential_access",
+      "severity": "CRITICAL",
+      "source_ip": "175.45.178.2",
+      "user": "SYSTEM",
+      "host": "VAULT-SIGNER-01",
+      "details": "Heap inspection extracted decrypted Ed25519 signing keys from memory",
+      "time_offset_seconds": 52,
+      "timestamp": "2026-10-18T06:21:05.404548Z",
+      "mitre": {
+        "technique_id": "T1003",
+        "technique": "OS Credential Dumping",
+        "tactic": "Credential Access"
+      }
+    },
+    {
+      "event_id": "SIM-LZ-05",
+      "attacker_id": "APT-LAZARUS-38",
+      "event_type": "privilege_escalation",
+      "severity": "CRITICAL",
+      "source_ip": "175.45.178.2",
+      "user": "SYSTEM",
+      "host": "VAULT-SIGNER-01",
+      "details": "CVE-2024-38077 Windows Remote Desktop Licensing service exploit executed",
+      "time_offset_seconds": 68,
+      "timestamp": "2026-10-18T06:21:21.404548Z",
+      "mitre": {
+        "technique_id": "T1068",
+        "technique": "Exploitation for Privilege Escalation",
+        "tactic": "Privilege Escalation"
+      }
+    },
+    {
+      "event_id": "SIM-LZ-06",
+      "attacker_id": "APT-LAZARUS-38",
+      "event_type": "data_access",
+      "severity": "HIGH",
+      "source_ip": "175.45.178.2",
+      "user": "SYSTEM",
+      "host": "VAULT-SIGNER-01",
+      "details": "Unauthorized cryptographic transaction payload transmitted to external C2 relay",
+      "time_offset_seconds": 85,
+      "timestamp": "2026-10-18T06:21:38.404548Z",
+      "mitre": {
+        "technique_id": "T1005",
+        "technique": "Data from Local System",
+        "tactic": "Collection"
+      }
+    },
+    {
+      "event_id": "TRAP-20632",
+      "attacker_id": "PROBE-27_0_0_1",
+      "event_type": "credential_access",
+      "severity": "CRITICAL",
+      "source_ip": "127.0.0.1",
+      "user": "canary_trap_service",
+      "host": "HONEYPOT-DECOY-TRAP",
+      "details": "Honeypot tripwire [CANARY_CREDENTIALS] touched by 127.0.0.1 (UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36)",
+      "timestamp": "2026-10-18T06:20:20Z",
+      "mitre": {
+        "technique_id": "T1003",
+        "technique": "OS Credential Dumping",
+        "tactic": "Credential Access"
+      }
+    },
+    {
+      "event_id": "SHELL-87317",
+      "attacker_id": "INTERACTIVE-INTRUDER",
+      "event_type": "process_created",
+      "severity": "LOW",
+      "source_ip": "10.0.1.99",
+      "user": "svc_backup_admin",
+      "host": "DECOY-HONEY-SHELL",
+      "details": "Honeyshell CLI: '# Diagnostic Telemetry Command Get-WinEvent -FilterHashtable @{LogName='Security'; ID=4624,4625} -MaxEvents 10'",
+      "timestamp": "2026-10-18T06:22:22Z",
+      "mitre": {
+        "technique_id": "T1059",
+        "technique": "Command and Scripting Interpreter",
+        "tactic": "Execution"
+      }
     }
   ]
 }

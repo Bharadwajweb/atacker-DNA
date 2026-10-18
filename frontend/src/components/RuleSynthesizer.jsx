@@ -132,10 +132,18 @@ export default function RuleSynthesizer({ attackerId = "ALL", apiBase = "http://
           maxHeight: 340,
           overflowY: "auto",
           fontSize: 12,
-          position: "relative"
+          position: "relative",
+          opacity: loading ? 0.6 : 1,
+          transition: "opacity 0.2s ease"
         }}
       >
-        <code>{currentCode}</code>
+        {loading ? (
+          <div style={{ padding: "40px 0", textAlign: "center", color: "var(--cyan-neon)", fontFamily: "var(--font-mono)" }}>
+            [SYNTHESIZING DETECTION SIGNATURES...]
+          </div>
+        ) : (
+          <code>{currentCode}</code>
+        )}
       </div>
     </div>
   );

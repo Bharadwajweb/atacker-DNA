@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { Globe, Radio, Shield, Crosshair, MapPin, Zap } from "lucide-react";
+import { Globe } from "lucide-react";
 
 const THREAT_ACTOR_GEO = {
   "APT29_COZY_BEAR": { name: "APT29 (Cozy Bear)", city: "Moscow", country: "Russian Federation", x: 620, y: 120, color: "#ff2a5f", ip: "185.220.101.5" },
   "APT28_FANCY_BEAR": { name: "APT28 (Fancy Bear)", city: "St. Petersburg", country: "Russian Federation", x: 605, y: 110, color: "#f43f5e", ip: "91.240.118.17" },
   "LAZARUS_GROUP": { name: "Lazarus Group", city: "Pyongyang", country: "DPRK", x: 800, y: 175, color: "#a855f7", ip: "175.45.178.2" },
   "FIN7_CARBANAK": { name: "FIN7 Syndicate", city: "Bucharest / Tor", country: "Transnational", x: 570, y: 145, color: "#f59e0b", ip: "193.109.69.4" },
-  "LOCKBIT_3_CARTEL": { name: "LockBit Cartel", city: "Distributed Tor Relays", country: "Darknet", x: 540, y: 130, color: "#ff2a5f", ip: "194.26.29.112" }
+  "LOCKBIT_3_CARTEL": { name: "LockBit Cartel", city: "Distributed Tor Relays", country: "Darknet", x: 540, y: 130, color: "#ff2a5f", ip: "194.26.29.112" },
+  "VOLT_TYPHOON_CRITICAL": { name: "Volt Typhoon", city: "Guangzhou", country: "PRC", x: 765, y: 165, color: "#f59e0b", ip: "202.108.22.5" },
+  "VOLT_TYPHOON": { name: "Volt Typhoon", city: "Guangzhou", country: "PRC", x: 765, y: 165, color: "#f59e0b", ip: "202.108.22.5" }
 };
 
 const TARGET_DATACENTER = {

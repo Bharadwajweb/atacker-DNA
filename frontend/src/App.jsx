@@ -34,6 +34,14 @@ export default function App() {
     }
   });
 
+  const [theme, setTheme] = useState(() => {
+    try {
+      return localStorage.getItem("attacker_dna_theme") || "matrix";
+    } catch {
+      return "matrix";
+    }
+  });
+
   const [dashboardData, setDashboardData] = useState(null);
   const [selectedAttacker, setSelectedAttacker] = useState("ALL");
   const [replayIndex, setReplayIndex] = useState(0);
@@ -44,6 +52,16 @@ export default function App() {
   const [isCopilotOpen, setIsCopilotOpen] = useState(false);
   const [isDossierOpen, setIsDossierOpen] = useState(false);
   const [isImmunizeOpen, setIsImmunizeOpen] = useState(false);
+
+  // Apply theme to document element
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    try {
+      localStorage.setItem("attacker_dna_theme", theme);
+    } catch {
+      // ignore
+    }
+  }, [theme]);
 
   // Fetch complete dashboard state from backend
   const fetchDashboard = useCallback(async () => {
@@ -60,8 +78,25 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    fetchDashboard();
-  }, [fetchDashboard]);
+    let active = true;
+    (async () => {
+      try {
+        const res = await fetch(`${API_BASE}/dashboard`);
+        const data = await res.json();
+        if (active) {
+          setDashboardData(data);
+          if (data.events) {
+            setReplayIndex(data.events.length - 1);
+          }
+        }
+      } catch (err) {
+        console.error("Initial dashboard fetch error:", err);
+      }
+    })();
+    return () => {
+      active = false;
+    };
+  }, []);
 
   // WebSocket Live Ingestion Connection with Voice Announcer
   useEffect(() => {
@@ -90,14 +125,19 @@ export default function App() {
 
           setTimeout(() => setActiveToast(null), 4000);
           fetchDashboard();
-        } catch (e) {}
+        } catch {
+          // ignore malformed ws messages
+        }
       };
 
       ws.onclose = () => {
         setWsConnected(false);
       };
-    } catch (err) {
-      setWsConnected(false);
+      ws.onerror = () => {
+        setWsConnected(false);
+      };
+    } catch {
+      // connection attempt failed
     }
 
     return () => {
@@ -158,6 +198,9 @@ export default function App() {
       {/* Background Cyber Grid */}
       <div className="cyber-canvas-bg" />
 
+      {/* Dynamic Cyber Radar Sweep Beam */}
+      <div className="radar-sweep-beam" />
+
       {/* Retro CRT Scanlines Overlay Toggle */}
       {scanlines && <div className="scanlines" />}
 
@@ -170,9 +213,9 @@ export default function App() {
             right: 24,
             zIndex: 9999,
             padding: "14px 20px",
-            background: "rgba(5, 11, 24, 0.95)",
-            border: "1px solid var(--cyan-neon)",
-            boxShadow: "0 0 25px rgba(0, 240, 255, 0.3)",
+            background: "var(--bg-card)",
+            border: "1px solid var(--border-glow)",
+            boxShadow: "0 0 25px var(--cyan-glow)",
             borderRadius: 10,
             display: "flex",
             alignItems: "center",
@@ -225,13 +268,15 @@ export default function App() {
           setIsImmunizeOpen(true);
         }}
         onRunAutoDemo={handleRunAutoDemo}
+        currentTheme={theme}
+        onSelectTheme={setTheme}
       />
 
       {/* Live SOC Telemetry Stream Ticker */}
       <section
         style={{
-          background: "rgba(2, 6, 17, 0.95)",
-          borderBottom: "1px solid rgba(0, 240, 255, 0.2)",
+          background: "var(--bg-void)",
+          borderBottom: "1px solid var(--border-subtle)",
           padding: "8px 24px",
           display: "flex",
           alignItems: "center",
@@ -268,7 +313,7 @@ export default function App() {
                   style={{
                     fontSize: 9,
                     padding: "2px 6px",
-                    background: ev.severity === "CRITICAL" ? "rgba(255,42,95,0.2)" : "rgba(0,240,255,0.15)",
+                    background: ev.severity === "CRITICAL" ? "rgba(255,42,95,0.2)" : "rgba(0,255,157,0.15)",
                     color: ev.severity === "CRITICAL" ? "var(--crimson-neon)" : "var(--cyan-neon)"
                   }}
                 >
@@ -284,16 +329,14 @@ export default function App() {
       <main style={{ maxWidth: 1680, margin: "0 auto", padding: "28px 24px 60px", display: "flex", flexDirection: "column", gap: 24 }}>
         {/* Hero Mission Control Strip */}
         <section
-          className="glass-panel"
+          className="glass-panel hud-corner"
           style={{
-            padding: "24px 32px",
+            padding: "26px 32px",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
             flexWrap: "wrap",
-            gap: 20,
-            background: "linear-gradient(135deg, rgba(8, 20, 44, 0.8), rgba(4, 9, 20, 0.9))",
-            borderColor: "rgba(0, 240, 255, 0.25)"
+            gap: 20
           }}
         >
           <div>
@@ -303,7 +346,7 @@ export default function App() {
                 CRISPR DEFENSE ACTIVE • {wsConnected ? "STREAMING WEBSOCKET ONLINE" : "TELEMETRY SYNCED"}
               </span>
             </div>
-            <h1 style={{ fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 900, marginTop: 4, letterSpacing: "-0.03em" }}>
+            <h1 style={{ fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 900, marginTop: 4, letterSpacing: "-0.03em", fontFamily: "var(--font-display)" }}>
               Adversary Genome Sequencing & Attribution Deck
             </h1>
             <p style={{ fontSize: 14, color: "var(--text-secondary)", marginTop: 4, maxWidth: 880 }}>
@@ -315,16 +358,17 @@ export default function App() {
             <div
               style={{
                 padding: "12px 20px",
-                background: "rgba(2, 6, 17, 0.8)",
-                border: "1px solid rgba(0, 240, 255, 0.3)",
+                background: "var(--bg-void)",
+                border: "1px solid var(--border-glow)",
                 borderRadius: 10,
-                textAlign: "center"
+                textAlign: "center",
+                boxShadow: "0 0 16px var(--cyan-glow)"
               }}
             >
               <div style={{ fontSize: 10, fontFamily: "var(--font-mono)", color: "var(--text-muted)" }}>
                 SYSTEM CONFIDENCE
               </div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: "var(--cyan-neon)", marginTop: 2 }}>
+              <div style={{ fontSize: 22, fontWeight: 900, color: "var(--cyan-neon)", marginTop: 2, fontFamily: "var(--font-display)" }}>
                 {dashboardData?.summary?.attribution_score || "94.2"}%
               </div>
             </div>
@@ -332,8 +376,8 @@ export default function App() {
             <div
               style={{
                 padding: "12px 20px",
-                background: "rgba(2, 6, 17, 0.8)",
-                border: "1px solid rgba(168, 85, 247, 0.3)",
+                background: "var(--bg-void)",
+                border: "1px solid var(--border-subtle)",
                 borderRadius: 10,
                 textAlign: "center"
               }}
@@ -341,7 +385,7 @@ export default function App() {
               <div style={{ fontSize: 10, fontFamily: "var(--font-mono)", color: "var(--text-muted)" }}>
                 DECOY ASSETS
               </div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: "var(--violet-neon)", marginTop: 2 }}>
+              <div style={{ fontSize: 22, fontWeight: 900, color: "var(--violet-neon)", marginTop: 2, fontFamily: "var(--font-display)" }}>
                 {dashboardData?.deception?.events || 4} ACTIVE
               </div>
             </div>

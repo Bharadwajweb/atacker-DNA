@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 import json
 import asyncio
+import time
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, Any
 
@@ -87,6 +89,18 @@ PREDICTION_FILE = DATA_DIR / "prediction.json"
 # ============================================================
 
 _DATA_CACHE = {}
+_BLAST_CACHE = {"key": None, "result": None}
+
+def get_cached_cyber_blast(events: list) -> dict:
+    if not events:
+        return perform_cyber_blast(events)
+    cache_key = (len(events), events[-1].get("event_id"), events[0].get("event_id"))
+    if _BLAST_CACHE["key"] == cache_key and _BLAST_CACHE["result"] is not None:
+        return _BLAST_CACHE["result"]
+    result = perform_cyber_blast(events)
+    _BLAST_CACHE["key"] = cache_key
+    _BLAST_CACHE["result"] = result
+    return result
 
 def load_json(filename: str, force_reload: bool = False):
     if not force_reload and filename in _DATA_CACHE:
@@ -510,8 +524,8 @@ def dashboard():
     predictions = predictions_data.get("predictions", [])
     deception = analyze_events(events)
 
-    # Calculate overall Cyber-BLAST alignment across all events
-    blast_result = perform_cyber_blast(events)
+    # Calculate overall Cyber-BLAST alignment across all events (cached for high performance)
+    blast_result = get_cached_cyber_blast(events)
 
     return {
         "system": "ATTACK DNA X",
@@ -529,8 +543,10 @@ def dashboard():
         "events": events,
         "attackers": attackers,
         "graph": {
-            "nodes": len(nodes),
-            "edges": len(edges),
+            "nodes": nodes,
+            "edges": edges,
+            "total_nodes": len(nodes),
+            "total_edges": len(edges),
             "node_data": nodes,
             "edge_data": edges
         },
@@ -683,7 +699,6 @@ async def ingest_raw_log(payload: Dict[str, Any]):
     events = events_data.get("events", [])
 
     added = []
-    base_time = asyncio.get_event_loop().time()
 
     for idx, line in enumerate(lines[:50]):  # cap at 50 per batch
         event_type = "process_created"
@@ -710,7 +725,7 @@ async def ingest_raw_log(payload: Dict[str, Any]):
             "user": "ingest_user",
             "host": "TARGET-NODE",
             "details": line[:180],
-            "timestamp": "2026-10-16T10:15:00Z"
+            "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         }
         events.append(ev)
         added.append(ev)
@@ -763,7 +778,7 @@ async def trigger_honeypot(trap_type: str, request: Request):
     events = events_data.get("events", [])
 
     trap_event = {
-        "event_id": f"TRAP-{int(asyncio.get_event_loop().time() * 1000) % 100000:05d}",
+        "event_id": f"TRAP-{int(time.time() * 1000) % 100000:05d}",
         "attacker_id": f"PROBE-{client_ip.replace('.', '_')[-8:]}",
         "event_type": "credential_access" if "cred" in trap_type or "admin" in trap_type else "lateral_movement",
         "severity": "CRITICAL",
@@ -771,7 +786,7 @@ async def trigger_honeypot(trap_type: str, request: Request):
         "user": "canary_trap_service",
         "host": "HONEYPOT-DECOY-TRAP",
         "details": f"Honeypot tripwire [{trap_type.upper()}] touched by {client_ip} (UA: {user_agent[:60]})",
-        "timestamp": "2026-10-16T10:32:00Z"
+        "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     }
 
     events.append(trap_event)
@@ -917,7 +932,7 @@ async def execute_immunization(payload: Dict[str, Any] = None):
 
     return {
         "success": True,
-        "timestamp": "2026-10-16T10:49:00Z",
+        "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "isolated_hosts_count": len(compromised_hosts),
         "revoked_tokens_count": len(compromised_users),
         "isolation_ledger": isolation_ledger,

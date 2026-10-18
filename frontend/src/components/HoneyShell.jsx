@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Terminal, Send, Sparkles, CornerDownLeft, ShieldAlert } from "lucide-react";
+import { Terminal, CornerDownLeft } from "lucide-react";
 import { playTacticalClick, playAlertChime } from "../utils/audio";
 
 const QUICK_COMMANDS = [

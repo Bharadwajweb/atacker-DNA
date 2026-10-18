@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dna, ShieldCheck, KeyRound, User, Fingerprint, Lock, ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
+import { Dna, KeyRound, User, Fingerprint, ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
 import { playTacticalClick, playAlertChime, speakTacticalAlert } from "../utils/audio";
 
 export default function AuthGate({ onAuthenticated }) {

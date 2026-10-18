@@ -22,57 +22,6 @@
       ],
       "high_severity_events": 5,
       "risk_score": 100
-    },
-    {
-      "attacker_id": "INTERACTIVE-INTRUDER",
-      "total_events": 1,
-      "event_types": [
-        "process_created"
-      ],
-      "source_ips": [
-        "10.0.1.99"
-      ],
-      "hosts": [
-        "DECOY-HONEY-SHELL"
-      ],
-      "high_severity_events": 0,
-      "risk_score": 10
-    },
-    {
-      "attacker_id": "APT-LAZARUS-38",
-      "total_events": 18,
-      "event_types": [
-        "process_created",
-        "powershell_execution",
-        "failed_login",
-        "credential_access",
-        "privilege_escalation",
-        "data_access"
-      ],
-      "source_ips": [
-        "175.45.178.2"
-      ],
-      "hosts": [
-        "BUILD-SRV-09",
-        "VAULT-SIGNER-01"
-      ],
-      "high_severity_events": 12,
-      "risk_score": 100
-    },
-    {
-      "attacker_id": "PROBE-27_0_0_1",
-      "total_events": 4,
-      "event_types": [
-        "credential_access"
-      ],
-      "source_ips": [
-        "127.0.0.1"
-      ],
-      "hosts": [
-        "HONEYPOT-DECOY-TRAP"
-      ],
-      "high_severity_events": 4,
-      "risk_score": 100
     }
   ]
 }

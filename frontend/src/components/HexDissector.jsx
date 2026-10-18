@@ -1,12 +1,10 @@
-import React, { useState } from "react";
-import { Binary, Search, Shield, Eye, Cpu } from "lucide-react";
-import { playTacticalClick } from "../utils/audio";
+import React from "react";
+import { Binary } from "lucide-react";
 
 // Helper to generate simulated deterministic hex dump for a given event string
 function generateHexDump(event) {
   const seedStr = `${event?.event_id || "EVT"}-${event?.event_type || "EXEC"}-${event?.details || "DEFAULT_PAYLOAD"}`;
   const lines = [];
-  const chars = "abcdef0123456789";
 
   for (let row = 0; row < 8; row++) {
     const offset = (row * 16).toString(16).padStart(8, "0");
@@ -36,8 +34,6 @@ function generateHexDump(event) {
 }
 
 export default function HexDissector({ selectedEvent }) {
-  const [highlightKeyword, setHighlightKeyword] = useState("");
-
   const activeEvent = selectedEvent || {
     event_id: "PAYLOAD-SYNTH-01",
     event_type: "powershell_execution",

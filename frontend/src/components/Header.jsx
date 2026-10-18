@@ -1,5 +1,5 @@
 import React from "react";
-import { Dna, Volume2, VolumeX, Monitor, RefreshCw, RotateCcw, FileText, AlertOctagon, Sparkles, Play, LogOut, ShieldCheck } from "lucide-react";
+import { Dna, Volume2, VolumeX, Monitor, RefreshCw, RotateCcw, FileText, AlertOctagon, Sparkles, Play, LogOut, Palette } from "lucide-react";
 import { toggleSound, playTacticalClick } from "../utils/audio";
 
 export default function Header({
@@ -15,7 +15,9 @@ export default function Header({
   onOpenImmunize,
   onRunAutoDemo,
   authSession,
-  onLogout
+  onLogout,
+  currentTheme = "matrix",
+  onSelectTheme
 }) {
   const [soundOn, setSoundOn] = React.useState(true);
 
@@ -153,7 +155,38 @@ export default function Header({
         </div>
 
         {/* Selector & Controls */}
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+          {/* Cyber Theme Switcher */}
+          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            <Palette size={14} style={{ color: "var(--cyan-neon)" }} />
+            <select
+              value={currentTheme}
+              onChange={(e) => {
+                playTacticalClick();
+                if (onSelectTheme) onSelectTheme(e.target.value);
+              }}
+              title="Select Active Cyber Command Deck Theme"
+              style={{
+                padding: "7px 12px",
+                background: "var(--bg-void)",
+                border: "1px solid var(--border-glow)",
+                borderRadius: 8,
+                color: "var(--cyan-neon)",
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                fontWeight: 800,
+                outline: "none",
+                cursor: "pointer",
+                boxShadow: "0 0 12px var(--cyan-glow)"
+              }}
+            >
+              <option value="matrix">🟢 QUANTUM MATRIX</option>
+              <option value="tokyo">🟣 NEO-TOKYO SYNTH</option>
+              <option value="solaris">🟠 SOLARIS DEFENSE</option>
+              <option value="arctic">🔵 ARCTIC TITANIUM</option>
+            </select>
+          </div>
+
           {/* Attacker Filter Dropdown */}
           <select
             value={selectedAttacker}
@@ -163,10 +196,10 @@ export default function Header({
             }}
             style={{
               padding: "7px 14px",
-              background: "#050b18",
-              border: "1px solid rgba(0, 240, 255, 0.4)",
+              background: "var(--bg-void)",
+              border: "1px solid var(--border-subtle)",
               borderRadius: 8,
-              color: "#38bdf8",
+              color: "var(--cyan-neon)",
               fontFamily: "var(--font-mono)",
               fontSize: 12,
               fontWeight: 700,
@@ -301,7 +334,9 @@ export default function Header({
               playTacticalClick();
               try {
                 await fetch("http://127.0.0.1:8000/trap/canary_credentials", { method: "POST" });
-              } catch (e) {}
+              } catch {
+                // Trap error gracefully ignored
+              }
             }}
             title="Trigger Live Honeypot Tripwire Alert"
             style={{

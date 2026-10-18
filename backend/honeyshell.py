@@ -4,6 +4,7 @@ Provides realistic deceptive command execution, simulated command outputs,
 and instant DNA codon sequencing for live terminal interaction.
 """
 
+from datetime import datetime, timezone
 from typing import Dict, Any, Tuple
 
 
@@ -103,7 +104,7 @@ def process_honeyshell_command(cmd_raw: str, attacker_id: str = "PROBE_SHELL") -
         "user": "svc_backup_admin",
         "host": "DECOY-HONEY-SHELL",
         "details": f"Honeyshell CLI: '{clean_cmd}'",
-        "timestamp": "2026-10-16T10:48:00Z"
+        "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     }
 
     return output, event

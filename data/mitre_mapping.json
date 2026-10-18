@@ -10,7 +10,7 @@
       "host": "AUTH-SRV-01",
       "details": "Brute force spray detected against Kerberos port 88",
       "time_offset_seconds": 0,
-      "timestamp": "2026-10-17T06:21:37.955320Z",
+      "timestamp": "2026-10-18T06:04:04.314191Z",
       "mitre": {
         "technique_id": "T1110",
         "technique": "Brute Force",
@@ -27,7 +27,7 @@
       "host": "AUTH-SRV-01",
       "details": "Valid authentication established via compromised service credential",
       "time_offset_seconds": 15,
-      "timestamp": "2026-10-17T06:21:52.955320Z",
+      "timestamp": "2026-10-18T06:04:19.314191Z",
       "mitre": {
         "technique_id": "T1078",
         "technique": "Valid Accounts",
@@ -44,7 +44,7 @@
       "host": "AUTH-SRV-01",
       "details": "PowerShell invoked with -NoP -NonI -W Hidden -Enc (Cobalt Strike stager)",
       "time_offset_seconds": 32,
-      "timestamp": "2026-10-17T06:22:09.955320Z",
+      "timestamp": "2026-10-18T06:04:36.314191Z",
       "mitre": {
         "technique_id": "T1059.001",
         "technique": "PowerShell",
@@ -61,7 +61,7 @@
       "host": "AUTH-SRV-01",
       "details": "SeDebugPrivilege enabled via token impersonation vulnerability",
       "time_offset_seconds": 48,
-      "timestamp": "2026-10-17T06:22:25.955320Z",
+      "timestamp": "2026-10-18T06:04:52.314191Z",
       "mitre": {
         "technique_id": "T1068",
         "technique": "Exploitation for Privilege Escalation",
@@ -78,7 +78,7 @@
       "host": "AUTH-SRV-01",
       "details": "MiniDumpWriteDump called on lsass.exe process handle",
       "time_offset_seconds": 65,
-      "timestamp": "2026-10-17T06:22:42.955320Z",
+      "timestamp": "2026-10-18T06:05:09.314191Z",
       "mitre": {
         "technique_id": "T1003",
         "technique": "OS Credential Dumping",
@@ -95,7 +95,7 @@
       "host": "CORP-FINANCE-02",
       "details": "SMB pipe established to remote administration share C$",
       "time_offset_seconds": 82,
-      "timestamp": "2026-10-17T06:22:59.955320Z",
+      "timestamp": "2026-10-18T06:05:26.314191Z",
       "mitre": {
         "technique_id": "T1021",
         "technique": "Remote Services",
@@ -112,397 +112,11 @@
       "host": "CORP-FINANCE-02",
       "details": "Classified strategic financial spreadsheets accessed and encrypted in memory",
       "time_offset_seconds": 105,
-      "timestamp": "2026-10-17T06:23:22.955320Z",
+      "timestamp": "2026-10-18T06:05:49.314191Z",
       "mitre": {
         "technique_id": "T1005",
         "technique": "Data from Local System",
         "tactic": "Collection"
-      }
-    },
-    {
-      "event_id": "SHELL-75119",
-      "attacker_id": "INTERACTIVE-INTRUDER",
-      "event_type": "process_created",
-      "severity": "LOW",
-      "source_ip": "10.0.1.99",
-      "user": "svc_backup_admin",
-      "host": "DECOY-HONEY-SHELL",
-      "details": "Honeyshell CLI: '# Download STIX 2.1 Threat Intel Bundle curl -O http://127.0.0.1:8000/export/stix/ALL'",
-      "timestamp": "2026-10-16T10:48:00Z",
-      "mitre": {
-        "technique_id": "T1059",
-        "technique": "Command and Scripting Interpreter",
-        "tactic": "Execution"
-      }
-    },
-    {
-      "event_id": "SIM-LZ-01",
-      "attacker_id": "APT-LAZARUS-38",
-      "event_type": "process_created",
-      "severity": "MEDIUM",
-      "source_ip": "175.45.178.2",
-      "user": "node_deployer",
-      "host": "BUILD-SRV-09",
-      "details": "Trojanized npm postinstall script spawned hidden bash execution thread",
-      "time_offset_seconds": 0,
-      "timestamp": "2026-10-17T06:53:03.226725Z",
-      "mitre": {
-        "technique_id": "T1059",
-        "technique": "Command and Scripting Interpreter",
-        "tactic": "Execution"
-      }
-    },
-    {
-      "event_id": "SIM-LZ-02",
-      "attacker_id": "APT-LAZARUS-38",
-      "event_type": "powershell_execution",
-      "severity": "HIGH",
-      "source_ip": "175.45.178.2",
-      "user": "node_deployer",
-      "host": "BUILD-SRV-09",
-      "details": "PowerShell reflective DLL injection loaded custom wiper payload",
-      "time_offset_seconds": 18,
-      "timestamp": "2026-10-17T06:53:21.226725Z",
-      "mitre": {
-        "technique_id": "T1059.001",
-        "technique": "PowerShell",
-        "tactic": "Execution"
-      }
-    },
-    {
-      "event_id": "SIM-LZ-03",
-      "attacker_id": "APT-LAZARUS-38",
-      "event_type": "failed_login",
-      "severity": "MEDIUM",
-      "source_ip": "175.45.178.2",
-      "user": "vault_keeper",
-      "host": "VAULT-SIGNER-01",
-      "details": "Repeated challenge failures on ECDSA hardware security module interface",
-      "time_offset_seconds": 35,
-      "timestamp": "2026-10-17T06:53:38.226725Z",
-      "mitre": {
-        "technique_id": "T1110",
-        "technique": "Brute Force",
-        "tactic": "Credential Access"
-      }
-    },
-    {
-      "event_id": "SIM-LZ-04",
-      "attacker_id": "APT-LAZARUS-38",
-      "event_type": "credential_access",
-      "severity": "CRITICAL",
-      "source_ip": "175.45.178.2",
-      "user": "SYSTEM",
-      "host": "VAULT-SIGNER-01",
-      "details": "Heap inspection extracted decrypted Ed25519 signing keys from memory",
-      "time_offset_seconds": 52,
-      "timestamp": "2026-10-17T06:53:55.226725Z",
-      "mitre": {
-        "technique_id": "T1003",
-        "technique": "OS Credential Dumping",
-        "tactic": "Credential Access"
-      }
-    },
-    {
-      "event_id": "SIM-LZ-05",
-      "attacker_id": "APT-LAZARUS-38",
-      "event_type": "privilege_escalation",
-      "severity": "CRITICAL",
-      "source_ip": "175.45.178.2",
-      "user": "SYSTEM",
-      "host": "VAULT-SIGNER-01",
-      "details": "CVE-2024-38077 Windows Remote Desktop Licensing service exploit executed",
-      "time_offset_seconds": 68,
-      "timestamp": "2026-10-17T06:54:11.226725Z",
-      "mitre": {
-        "technique_id": "T1068",
-        "technique": "Exploitation for Privilege Escalation",
-        "tactic": "Privilege Escalation"
-      }
-    },
-    {
-      "event_id": "SIM-LZ-06",
-      "attacker_id": "APT-LAZARUS-38",
-      "event_type": "data_access",
-      "severity": "HIGH",
-      "source_ip": "175.45.178.2",
-      "user": "SYSTEM",
-      "host": "VAULT-SIGNER-01",
-      "details": "Unauthorized cryptographic transaction payload transmitted to external C2 relay",
-      "time_offset_seconds": 85,
-      "timestamp": "2026-10-17T06:54:28.226725Z",
-      "mitre": {
-        "technique_id": "T1005",
-        "technique": "Data from Local System",
-        "tactic": "Collection"
-      }
-    },
-    {
-      "event_id": "SIM-LZ-01",
-      "attacker_id": "APT-LAZARUS-38",
-      "event_type": "process_created",
-      "severity": "MEDIUM",
-      "source_ip": "175.45.178.2",
-      "user": "node_deployer",
-      "host": "BUILD-SRV-09",
-      "details": "Trojanized npm postinstall script spawned hidden bash execution thread",
-      "time_offset_seconds": 0,
-      "timestamp": "2026-10-17T06:53:05.228891Z",
-      "mitre": {
-        "technique_id": "T1059",
-        "technique": "Command and Scripting Interpreter",
-        "tactic": "Execution"
-      }
-    },
-    {
-      "event_id": "SIM-LZ-02",
-      "attacker_id": "APT-LAZARUS-38",
-      "event_type": "powershell_execution",
-      "severity": "HIGH",
-      "source_ip": "175.45.178.2",
-      "user": "node_deployer",
-      "host": "BUILD-SRV-09",
-      "details": "PowerShell reflective DLL injection loaded custom wiper payload",
-      "time_offset_seconds": 18,
-      "timestamp": "2026-10-17T06:53:23.228891Z",
-      "mitre": {
-        "technique_id": "T1059.001",
-        "technique": "PowerShell",
-        "tactic": "Execution"
-      }
-    },
-    {
-      "event_id": "SIM-LZ-03",
-      "attacker_id": "APT-LAZARUS-38",
-      "event_type": "failed_login",
-      "severity": "MEDIUM",
-      "source_ip": "175.45.178.2",
-      "user": "vault_keeper",
-      "host": "VAULT-SIGNER-01",
-      "details": "Repeated challenge failures on ECDSA hardware security module interface",
-      "time_offset_seconds": 35,
-      "timestamp": "2026-10-17T06:53:40.228891Z",
-      "mitre": {
-        "technique_id": "T1110",
-        "technique": "Brute Force",
-        "tactic": "Credential Access"
-      }
-    },
-    {
-      "event_id": "SIM-LZ-04",
-      "attacker_id": "APT-LAZARUS-38",
-      "event_type": "credential_access",
-      "severity": "CRITICAL",
-      "source_ip": "175.45.178.2",
-      "user": "SYSTEM",
-      "host": "VAULT-SIGNER-01",
-      "details": "Heap inspection extracted decrypted Ed25519 signing keys from memory",
-      "time_offset_seconds": 52,
-      "timestamp": "2026-10-17T06:53:57.228891Z",
-      "mitre": {
-        "technique_id": "T1003",
-        "technique": "OS Credential Dumping",
-        "tactic": "Credential Access"
-      }
-    },
-    {
-      "event_id": "SIM-LZ-05",
-      "attacker_id": "APT-LAZARUS-38",
-      "event_type": "privilege_escalation",
-      "severity": "CRITICAL",
-      "source_ip": "175.45.178.2",
-      "user": "SYSTEM",
-      "host": "VAULT-SIGNER-01",
-      "details": "CVE-2024-38077 Windows Remote Desktop Licensing service exploit executed",
-      "time_offset_seconds": 68,
-      "timestamp": "2026-10-17T06:54:13.228891Z",
-      "mitre": {
-        "technique_id": "T1068",
-        "technique": "Exploitation for Privilege Escalation",
-        "tactic": "Privilege Escalation"
-      }
-    },
-    {
-      "event_id": "SIM-LZ-06",
-      "attacker_id": "APT-LAZARUS-38",
-      "event_type": "data_access",
-      "severity": "HIGH",
-      "source_ip": "175.45.178.2",
-      "user": "SYSTEM",
-      "host": "VAULT-SIGNER-01",
-      "details": "Unauthorized cryptographic transaction payload transmitted to external C2 relay",
-      "time_offset_seconds": 85,
-      "timestamp": "2026-10-17T06:54:30.228891Z",
-      "mitre": {
-        "technique_id": "T1005",
-        "technique": "Data from Local System",
-        "tactic": "Collection"
-      }
-    },
-    {
-      "event_id": "SIM-LZ-01",
-      "attacker_id": "APT-LAZARUS-38",
-      "event_type": "process_created",
-      "severity": "MEDIUM",
-      "source_ip": "175.45.178.2",
-      "user": "node_deployer",
-      "host": "BUILD-SRV-09",
-      "details": "Trojanized npm postinstall script spawned hidden bash execution thread",
-      "time_offset_seconds": 0,
-      "timestamp": "2026-10-17T06:53:08.941203Z",
-      "mitre": {
-        "technique_id": "T1059",
-        "technique": "Command and Scripting Interpreter",
-        "tactic": "Execution"
-      }
-    },
-    {
-      "event_id": "SIM-LZ-02",
-      "attacker_id": "APT-LAZARUS-38",
-      "event_type": "powershell_execution",
-      "severity": "HIGH",
-      "source_ip": "175.45.178.2",
-      "user": "node_deployer",
-      "host": "BUILD-SRV-09",
-      "details": "PowerShell reflective DLL injection loaded custom wiper payload",
-      "time_offset_seconds": 18,
-      "timestamp": "2026-10-17T06:53:26.941203Z",
-      "mitre": {
-        "technique_id": "T1059.001",
-        "technique": "PowerShell",
-        "tactic": "Execution"
-      }
-    },
-    {
-      "event_id": "SIM-LZ-03",
-      "attacker_id": "APT-LAZARUS-38",
-      "event_type": "failed_login",
-      "severity": "MEDIUM",
-      "source_ip": "175.45.178.2",
-      "user": "vault_keeper",
-      "host": "VAULT-SIGNER-01",
-      "details": "Repeated challenge failures on ECDSA hardware security module interface",
-      "time_offset_seconds": 35,
-      "timestamp": "2026-10-17T06:53:43.941203Z",
-      "mitre": {
-        "technique_id": "T1110",
-        "technique": "Brute Force",
-        "tactic": "Credential Access"
-      }
-    },
-    {
-      "event_id": "SIM-LZ-04",
-      "attacker_id": "APT-LAZARUS-38",
-      "event_type": "credential_access",
-      "severity": "CRITICAL",
-      "source_ip": "175.45.178.2",
-      "user": "SYSTEM",
-      "host": "VAULT-SIGNER-01",
-      "details": "Heap inspection extracted decrypted Ed25519 signing keys from memory",
-      "time_offset_seconds": 52,
-      "timestamp": "2026-10-17T06:54:00.941203Z",
-      "mitre": {
-        "technique_id": "T1003",
-        "technique": "OS Credential Dumping",
-        "tactic": "Credential Access"
-      }
-    },
-    {
-      "event_id": "SIM-LZ-05",
-      "attacker_id": "APT-LAZARUS-38",
-      "event_type": "privilege_escalation",
-      "severity": "CRITICAL",
-      "source_ip": "175.45.178.2",
-      "user": "SYSTEM",
-      "host": "VAULT-SIGNER-01",
-      "details": "CVE-2024-38077 Windows Remote Desktop Licensing service exploit executed",
-      "time_offset_seconds": 68,
-      "timestamp": "2026-10-17T06:54:16.941203Z",
-      "mitre": {
-        "technique_id": "T1068",
-        "technique": "Exploitation for Privilege Escalation",
-        "tactic": "Privilege Escalation"
-      }
-    },
-    {
-      "event_id": "SIM-LZ-06",
-      "attacker_id": "APT-LAZARUS-38",
-      "event_type": "data_access",
-      "severity": "HIGH",
-      "source_ip": "175.45.178.2",
-      "user": "SYSTEM",
-      "host": "VAULT-SIGNER-01",
-      "details": "Unauthorized cryptographic transaction payload transmitted to external C2 relay",
-      "time_offset_seconds": 85,
-      "timestamp": "2026-10-17T06:54:33.941203Z",
-      "mitre": {
-        "technique_id": "T1005",
-        "technique": "Data from Local System",
-        "tactic": "Collection"
-      }
-    },
-    {
-      "event_id": "TRAP-03275",
-      "attacker_id": "PROBE-27_0_0_1",
-      "event_type": "credential_access",
-      "severity": "CRITICAL",
-      "source_ip": "127.0.0.1",
-      "user": "canary_trap_service",
-      "host": "HONEYPOT-DECOY-TRAP",
-      "details": "Honeypot tripwire [CANARY_CREDENTIALS] touched by 127.0.0.1 (UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36)",
-      "timestamp": "2026-10-16T10:32:00Z",
-      "mitre": {
-        "technique_id": "T1003",
-        "technique": "OS Credential Dumping",
-        "tactic": "Credential Access"
-      }
-    },
-    {
-      "event_id": "TRAP-05448",
-      "attacker_id": "PROBE-27_0_0_1",
-      "event_type": "credential_access",
-      "severity": "CRITICAL",
-      "source_ip": "127.0.0.1",
-      "user": "canary_trap_service",
-      "host": "HONEYPOT-DECOY-TRAP",
-      "details": "Honeypot tripwire [CANARY_CREDENTIALS] touched by 127.0.0.1 (UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36)",
-      "timestamp": "2026-10-16T10:32:00Z",
-      "mitre": {
-        "technique_id": "T1003",
-        "technique": "OS Credential Dumping",
-        "tactic": "Credential Access"
-      }
-    },
-    {
-      "event_id": "TRAP-09130",
-      "attacker_id": "PROBE-27_0_0_1",
-      "event_type": "credential_access",
-      "severity": "CRITICAL",
-      "source_ip": "127.0.0.1",
-      "user": "canary_trap_service",
-      "host": "HONEYPOT-DECOY-TRAP",
-      "details": "Honeypot tripwire [CANARY_CREDENTIALS] touched by 127.0.0.1 (UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36)",
-      "timestamp": "2026-10-16T10:32:00Z",
-      "mitre": {
-        "technique_id": "T1003",
-        "technique": "OS Credential Dumping",
-        "tactic": "Credential Access"
-      }
-    },
-    {
-      "event_id": "TRAP-33759",
-      "attacker_id": "PROBE-27_0_0_1",
-      "event_type": "credential_access",
-      "severity": "CRITICAL",
-      "source_ip": "127.0.0.1",
-      "user": "canary_trap_service",
-      "host": "HONEYPOT-DECOY-TRAP",
-      "details": "Honeypot tripwire [CANARY_CREDENTIALS] touched by 127.0.0.1 (UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36)",
-      "timestamp": "2026-10-16T10:32:00Z",
-      "mitre": {
-        "technique_id": "T1003",
-        "technique": "OS Credential Dumping",
-        "tactic": "Credential Access"
       }
     }
   ]

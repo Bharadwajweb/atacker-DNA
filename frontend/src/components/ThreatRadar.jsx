@@ -65,6 +65,11 @@ export default function ThreatRadar({ attacker = {}, events = [] }) {
             >
               <Radar size={13} /> ADVERSARY THREAT RADAR
             </span>
+            {attacker?.attacker_id && (
+              <span style={{ fontSize: 11, color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
+                [{attacker.attacker_id} • RISK {attacker.risk_score || 85}%]
+              </span>
+            )}
           </div>
           <h3 style={{ fontSize: 18, fontWeight: 800, marginTop: 4, letterSpacing: "-0.02em" }}>
             Hexagonal Vector Profiling

@@ -2,8 +2,8 @@
   "predictions": [
     {
       "current_action": "failed_login",
-      "predicted_next_action": "credential_access",
-      "confidence": 75.0
+      "predicted_next_action": "successful_login",
+      "confidence": 100.0
     },
     {
       "current_action": "successful_login",
@@ -12,33 +12,23 @@
     },
     {
       "current_action": "powershell_execution",
-      "predicted_next_action": "failed_login",
-      "confidence": 75.0
+      "predicted_next_action": "privilege_escalation",
+      "confidence": 100.0
     },
     {
       "current_action": "privilege_escalation",
-      "predicted_next_action": "data_access",
-      "confidence": 75.0
+      "predicted_next_action": "credential_access",
+      "confidence": 100.0
     },
     {
       "current_action": "credential_access",
-      "predicted_next_action": "privilege_escalation",
-      "confidence": 42.86
+      "predicted_next_action": "lateral_movement",
+      "confidence": 100.0
     },
     {
       "current_action": "lateral_movement",
       "predicted_next_action": "data_access",
       "confidence": 100.0
-    },
-    {
-      "current_action": "data_access",
-      "predicted_next_action": "process_created",
-      "confidence": 75.0
-    },
-    {
-      "current_action": "process_created",
-      "predicted_next_action": "powershell_execution",
-      "confidence": 75.0
     }
   ]
 }

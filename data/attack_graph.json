@@ -6,7 +6,7 @@
       "attacker_id": "APT-COZY-29",
       "host": "AUTH-SRV-01",
       "severity": "LOW",
-      "timestamp": "2026-10-17T06:21:37.955320Z"
+      "timestamp": "2026-10-18T06:04:04.314191Z"
     },
     {
       "id": "SIM-29-02",
@@ -14,7 +14,7 @@
       "attacker_id": "APT-COZY-29",
       "host": "AUTH-SRV-01",
       "severity": "MEDIUM",
-      "timestamp": "2026-10-17T06:21:52.955320Z"
+      "timestamp": "2026-10-18T06:04:19.314191Z"
     },
     {
       "id": "SIM-29-03",
@@ -22,7 +22,7 @@
       "attacker_id": "APT-COZY-29",
       "host": "AUTH-SRV-01",
       "severity": "HIGH",
-      "timestamp": "2026-10-17T06:22:09.955320Z"
+      "timestamp": "2026-10-18T06:04:36.314191Z"
     },
     {
       "id": "SIM-29-04",
@@ -30,7 +30,7 @@
       "attacker_id": "APT-COZY-29",
       "host": "AUTH-SRV-01",
       "severity": "CRITICAL",
-      "timestamp": "2026-10-17T06:22:25.955320Z"
+      "timestamp": "2026-10-18T06:04:52.314191Z"
     },
     {
       "id": "SIM-29-05",
@@ -38,7 +38,7 @@
       "attacker_id": "APT-COZY-29",
       "host": "AUTH-SRV-01",
       "severity": "CRITICAL",
-      "timestamp": "2026-10-17T06:22:42.955320Z"
+      "timestamp": "2026-10-18T06:05:09.314191Z"
     },
     {
       "id": "SIM-29-06",
@@ -46,7 +46,7 @@
       "attacker_id": "APT-COZY-29",
       "host": "CORP-FINANCE-02",
       "severity": "HIGH",
-      "timestamp": "2026-10-17T06:22:59.955320Z"
+      "timestamp": "2026-10-18T06:05:26.314191Z"
     },
     {
       "id": "SIM-29-07",
@@ -54,191 +54,7 @@
       "attacker_id": "APT-COZY-29",
       "host": "CORP-FINANCE-02",
       "severity": "HIGH",
-      "timestamp": "2026-10-17T06:23:22.955320Z"
-    },
-    {
-      "id": "SHELL-75119",
-      "label": "process_created",
-      "attacker_id": "INTERACTIVE-INTRUDER",
-      "host": "DECOY-HONEY-SHELL",
-      "severity": "LOW",
-      "timestamp": "2026-10-16T10:48:00Z"
-    },
-    {
-      "id": "SIM-LZ-01",
-      "label": "process_created",
-      "attacker_id": "APT-LAZARUS-38",
-      "host": "BUILD-SRV-09",
-      "severity": "MEDIUM",
-      "timestamp": "2026-10-17T06:53:03.226725Z"
-    },
-    {
-      "id": "SIM-LZ-02",
-      "label": "powershell_execution",
-      "attacker_id": "APT-LAZARUS-38",
-      "host": "BUILD-SRV-09",
-      "severity": "HIGH",
-      "timestamp": "2026-10-17T06:53:21.226725Z"
-    },
-    {
-      "id": "SIM-LZ-03",
-      "label": "failed_login",
-      "attacker_id": "APT-LAZARUS-38",
-      "host": "VAULT-SIGNER-01",
-      "severity": "MEDIUM",
-      "timestamp": "2026-10-17T06:53:38.226725Z"
-    },
-    {
-      "id": "SIM-LZ-04",
-      "label": "credential_access",
-      "attacker_id": "APT-LAZARUS-38",
-      "host": "VAULT-SIGNER-01",
-      "severity": "CRITICAL",
-      "timestamp": "2026-10-17T06:53:55.226725Z"
-    },
-    {
-      "id": "SIM-LZ-05",
-      "label": "privilege_escalation",
-      "attacker_id": "APT-LAZARUS-38",
-      "host": "VAULT-SIGNER-01",
-      "severity": "CRITICAL",
-      "timestamp": "2026-10-17T06:54:11.226725Z"
-    },
-    {
-      "id": "SIM-LZ-06",
-      "label": "data_access",
-      "attacker_id": "APT-LAZARUS-38",
-      "host": "VAULT-SIGNER-01",
-      "severity": "HIGH",
-      "timestamp": "2026-10-17T06:54:28.226725Z"
-    },
-    {
-      "id": "SIM-LZ-01",
-      "label": "process_created",
-      "attacker_id": "APT-LAZARUS-38",
-      "host": "BUILD-SRV-09",
-      "severity": "MEDIUM",
-      "timestamp": "2026-10-17T06:53:05.228891Z"
-    },
-    {
-      "id": "SIM-LZ-02",
-      "label": "powershell_execution",
-      "attacker_id": "APT-LAZARUS-38",
-      "host": "BUILD-SRV-09",
-      "severity": "HIGH",
-      "timestamp": "2026-10-17T06:53:23.228891Z"
-    },
-    {
-      "id": "SIM-LZ-03",
-      "label": "failed_login",
-      "attacker_id": "APT-LAZARUS-38",
-      "host": "VAULT-SIGNER-01",
-      "severity": "MEDIUM",
-      "timestamp": "2026-10-17T06:53:40.228891Z"
-    },
-    {
-      "id": "SIM-LZ-04",
-      "label": "credential_access",
-      "attacker_id": "APT-LAZARUS-38",
-      "host": "VAULT-SIGNER-01",
-      "severity": "CRITICAL",
-      "timestamp": "2026-10-17T06:53:57.228891Z"
-    },
-    {
-      "id": "SIM-LZ-05",
-      "label": "privilege_escalation",
-      "attacker_id": "APT-LAZARUS-38",
-      "host": "VAULT-SIGNER-01",
-      "severity": "CRITICAL",
-      "timestamp": "2026-10-17T06:54:13.228891Z"
-    },
-    {
-      "id": "SIM-LZ-06",
-      "label": "data_access",
-      "attacker_id": "APT-LAZARUS-38",
-      "host": "VAULT-SIGNER-01",
-      "severity": "HIGH",
-      "timestamp": "2026-10-17T06:54:30.228891Z"
-    },
-    {
-      "id": "SIM-LZ-01",
-      "label": "process_created",
-      "attacker_id": "APT-LAZARUS-38",
-      "host": "BUILD-SRV-09",
-      "severity": "MEDIUM",
-      "timestamp": "2026-10-17T06:53:08.941203Z"
-    },
-    {
-      "id": "SIM-LZ-02",
-      "label": "powershell_execution",
-      "attacker_id": "APT-LAZARUS-38",
-      "host": "BUILD-SRV-09",
-      "severity": "HIGH",
-      "timestamp": "2026-10-17T06:53:26.941203Z"
-    },
-    {
-      "id": "SIM-LZ-03",
-      "label": "failed_login",
-      "attacker_id": "APT-LAZARUS-38",
-      "host": "VAULT-SIGNER-01",
-      "severity": "MEDIUM",
-      "timestamp": "2026-10-17T06:53:43.941203Z"
-    },
-    {
-      "id": "SIM-LZ-04",
-      "label": "credential_access",
-      "attacker_id": "APT-LAZARUS-38",
-      "host": "VAULT-SIGNER-01",
-      "severity": "CRITICAL",
-      "timestamp": "2026-10-17T06:54:00.941203Z"
-    },
-    {
-      "id": "SIM-LZ-05",
-      "label": "privilege_escalation",
-      "attacker_id": "APT-LAZARUS-38",
-      "host": "VAULT-SIGNER-01",
-      "severity": "CRITICAL",
-      "timestamp": "2026-10-17T06:54:16.941203Z"
-    },
-    {
-      "id": "SIM-LZ-06",
-      "label": "data_access",
-      "attacker_id": "APT-LAZARUS-38",
-      "host": "VAULT-SIGNER-01",
-      "severity": "HIGH",
-      "timestamp": "2026-10-17T06:54:33.941203Z"
-    },
-    {
-      "id": "TRAP-03275",
-      "label": "credential_access",
-      "attacker_id": "PROBE-27_0_0_1",
-      "host": "HONEYPOT-DECOY-TRAP",
-      "severity": "CRITICAL",
-      "timestamp": "2026-10-16T10:32:00Z"
-    },
-    {
-      "id": "TRAP-05448",
-      "label": "credential_access",
-      "attacker_id": "PROBE-27_0_0_1",
-      "host": "HONEYPOT-DECOY-TRAP",
-      "severity": "CRITICAL",
-      "timestamp": "2026-10-16T10:32:00Z"
-    },
-    {
-      "id": "TRAP-09130",
-      "label": "credential_access",
-      "attacker_id": "PROBE-27_0_0_1",
-      "host": "HONEYPOT-DECOY-TRAP",
-      "severity": "CRITICAL",
-      "timestamp": "2026-10-16T10:32:00Z"
-    },
-    {
-      "id": "TRAP-33759",
-      "label": "credential_access",
-      "attacker_id": "PROBE-27_0_0_1",
-      "host": "HONEYPOT-DECOY-TRAP",
-      "severity": "CRITICAL",
-      "timestamp": "2026-10-16T10:32:00Z"
+      "timestamp": "2026-10-18T06:05:49.314191Z"
     }
   ],
   "edges": [
@@ -271,121 +87,6 @@
       "id": "SIM-29-06-SIM-29-07",
       "source": "SIM-29-06",
       "target": "SIM-29-07"
-    },
-    {
-      "id": "SIM-29-07-SHELL-75119",
-      "source": "SIM-29-07",
-      "target": "SHELL-75119"
-    },
-    {
-      "id": "SHELL-75119-SIM-LZ-01",
-      "source": "SHELL-75119",
-      "target": "SIM-LZ-01"
-    },
-    {
-      "id": "SIM-LZ-01-SIM-LZ-02",
-      "source": "SIM-LZ-01",
-      "target": "SIM-LZ-02"
-    },
-    {
-      "id": "SIM-LZ-02-SIM-LZ-03",
-      "source": "SIM-LZ-02",
-      "target": "SIM-LZ-03"
-    },
-    {
-      "id": "SIM-LZ-03-SIM-LZ-04",
-      "source": "SIM-LZ-03",
-      "target": "SIM-LZ-04"
-    },
-    {
-      "id": "SIM-LZ-04-SIM-LZ-05",
-      "source": "SIM-LZ-04",
-      "target": "SIM-LZ-05"
-    },
-    {
-      "id": "SIM-LZ-05-SIM-LZ-06",
-      "source": "SIM-LZ-05",
-      "target": "SIM-LZ-06"
-    },
-    {
-      "id": "SIM-LZ-06-SIM-LZ-01",
-      "source": "SIM-LZ-06",
-      "target": "SIM-LZ-01"
-    },
-    {
-      "id": "SIM-LZ-01-SIM-LZ-02",
-      "source": "SIM-LZ-01",
-      "target": "SIM-LZ-02"
-    },
-    {
-      "id": "SIM-LZ-02-SIM-LZ-03",
-      "source": "SIM-LZ-02",
-      "target": "SIM-LZ-03"
-    },
-    {
-      "id": "SIM-LZ-03-SIM-LZ-04",
-      "source": "SIM-LZ-03",
-      "target": "SIM-LZ-04"
-    },
-    {
-      "id": "SIM-LZ-04-SIM-LZ-05",
-      "source": "SIM-LZ-04",
-      "target": "SIM-LZ-05"
-    },
-    {
-      "id": "SIM-LZ-05-SIM-LZ-06",
-      "source": "SIM-LZ-05",
-      "target": "SIM-LZ-06"
-    },
-    {
-      "id": "SIM-LZ-06-SIM-LZ-01",
-      "source": "SIM-LZ-06",
-      "target": "SIM-LZ-01"
-    },
-    {
-      "id": "SIM-LZ-01-SIM-LZ-02",
-      "source": "SIM-LZ-01",
-      "target": "SIM-LZ-02"
-    },
-    {
-      "id": "SIM-LZ-02-SIM-LZ-03",
-      "source": "SIM-LZ-02",
-      "target": "SIM-LZ-03"
-    },
-    {
-      "id": "SIM-LZ-03-SIM-LZ-04",
-      "source": "SIM-LZ-03",
-      "target": "SIM-LZ-04"
-    },
-    {
-      "id": "SIM-LZ-04-SIM-LZ-05",
-      "source": "SIM-LZ-04",
-      "target": "SIM-LZ-05"
-    },
-    {
-      "id": "SIM-LZ-05-SIM-LZ-06",
-      "source": "SIM-LZ-05",
-      "target": "SIM-LZ-06"
-    },
-    {
-      "id": "SIM-LZ-06-TRAP-03275",
-      "source": "SIM-LZ-06",
-      "target": "TRAP-03275"
-    },
-    {
-      "id": "TRAP-03275-TRAP-05448",
-      "source": "TRAP-03275",
-      "target": "TRAP-05448"
-    },
-    {
-      "id": "TRAP-05448-TRAP-09130",
-      "source": "TRAP-05448",
-      "target": "TRAP-09130"
-    },
-    {
-      "id": "TRAP-09130-TRAP-33759",
-      "source": "TRAP-09130",
-      "target": "TRAP-33759"
     }
   ]
 }

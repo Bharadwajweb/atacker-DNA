@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dna, Crosshair, AlertTriangle, CheckCircle, ShieldAlert, Globe, ChevronRight } from "lucide-react";
+import { Dna, Crosshair, AlertTriangle, CheckCircle, Globe } from "lucide-react";
 import { playTacticalClick } from "../utils/audio";
 
 export default function CyberBlastPanel({ blastData }) {

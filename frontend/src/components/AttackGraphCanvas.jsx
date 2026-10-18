@@ -57,25 +57,32 @@ const nodeTypes = {
 export default function AttackGraphCanvas({ graphData = { nodes: [], edges: [] }, events = [] }) {
   // If graphData nodes are empty, dynamically build flow nodes from events
   const flowElements = useMemo(() => {
-    if (graphData && graphData.nodes && graphData.nodes.length > 0) {
-      const nodes = graphData.nodes.map((n, idx) => ({
+    const rawNodes = Array.isArray(graphData?.nodes)
+      ? graphData.nodes
+      : (Array.isArray(graphData?.node_data) ? graphData.node_data : []);
+    const rawEdges = Array.isArray(graphData?.edges)
+      ? graphData.edges
+      : (Array.isArray(graphData?.edge_data) ? graphData.edge_data : []);
+
+    if (rawNodes.length > 0) {
+      const nodes = rawNodes.map((n, idx) => ({
         id: String(n.id || idx),
         type: "attackNode",
         position: n.position || { x: (idx % 4) * 220 + 40, y: Math.floor(idx / 4) * 120 + 40 },
         data: {
-          label: (n.label || n.event_type || "Event").replace(/_/g, " ").toUpperCase(),
+          label: String(n.label || n.event_type || "Event").replace(/_/g, " ").toUpperCase(),
           severity: n.severity || "HIGH",
           attacker_id: n.attacker || n.attacker_id || "APT",
           host: n.host || "NODE"
         }
       }));
 
-      const edges = (graphData.edges || []).map((e, idx) => ({
+      const edges = rawEdges.map((e, idx) => ({
         id: `e-${idx}`,
         source: String(e.source),
         target: String(e.target),
         animated: true,
-        style: { stroke: "#00f0ff", strokeWidth: 2 }
+        style: { stroke: "var(--cyan-neon, #00f0ff)", strokeWidth: 2 }
       }));
 
       return { nodes, edges };
@@ -87,7 +94,7 @@ export default function AttackGraphCanvas({ graphData = { nodes: [], edges: [] }
       type: "attackNode",
       position: { x: (idx % 4) * 220 + 40, y: Math.floor(idx / 4) * 130 + 40 },
       data: {
-        label: ev.event_type.replace(/_/g, " ").toUpperCase(),
+        label: String(ev.event_type || "EVENT").replace(/_/g, " ").toUpperCase(),
         severity: ev.severity || "MEDIUM",
         attacker_id: ev.attacker_id,
         host: ev.host
@@ -101,7 +108,7 @@ export default function AttackGraphCanvas({ graphData = { nodes: [], edges: [] }
         source: nodes[i].id,
         target: nodes[i + 1].id,
         animated: true,
-        style: { stroke: "#00f0ff", strokeWidth: 2 }
+        style: { stroke: "var(--cyan-neon, #00f0ff)", strokeWidth: 2 }
       });
     }
 

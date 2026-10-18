@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Stethoscope, ShieldAlert, CheckCircle2, AlertOctagon, ArrowRight, Activity } from "lucide-react";
+import { Stethoscope, Activity, Loader2, CheckCircle2 } from "lucide-react";
 
 export default function PathologistReport({ attackerId = "ALL", apiBase = "http://127.0.0.1:8000" }) {
   const [report, setReport] = useState(null);
@@ -20,6 +20,15 @@ export default function PathologistReport({ attackerId = "ALL", apiBase = "http:
     }
     fetchReport();
   }, [attackerId, apiBase]);
+
+  if (loading && !report) {
+    return (
+      <div className="glass-panel" style={{ padding: 40, textAlign: "center", color: "var(--cyan-neon)", fontFamily: "var(--font-mono)" }}>
+        <Loader2 size={24} className="animate-spin" style={{ margin: "0 auto 8px" }} />
+        [SYNTHESIZING CLINICAL FORENSIC PATHOLOGY REPORT...]
+      </div>
+    );
+  }
 
   if (!report) {
     return null;

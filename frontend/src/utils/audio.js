@@ -48,7 +48,7 @@ export function playTacticalClick() {
 
     osc.start();
     osc.stop(ctx.currentTime + 0.04);
-  } catch (e) {
+  } catch {
     // Graceful fallback if audio is blocked
   }
 }
@@ -79,7 +79,9 @@ export function playAlertChime() {
     osc2.start();
     osc1.stop(ctx.currentTime + 0.35);
     osc2.stop(ctx.currentTime + 0.35);
-  } catch (e) {}
+  } catch {
+    // Audio context error ignored
+  }
 }
 
 export function playGenomeScanPulse() {
@@ -103,7 +105,9 @@ export function playGenomeScanPulse() {
 
     osc.start();
     osc.stop(ctx.currentTime + 0.28);
-  } catch (e) {}
+  } catch {
+    // Audio context error ignored
+  }
 }
 
 export function playSimulationLaunch() {
@@ -126,7 +130,9 @@ export function playSimulationLaunch() {
 
     osc.start();
     osc.stop(ctx.currentTime + 0.6);
-  } catch (e) {}
+  } catch {
+    // Audio context error ignored
+  }
 }
 
 /**
@@ -149,6 +155,8 @@ export function speakTacticalAlert(text) {
     }
 
     window.speechSynthesis.speak(utterance);
-  } catch (e) {}
+  } catch {
+    // Speech synthesis error ignored
+  }
 }
 

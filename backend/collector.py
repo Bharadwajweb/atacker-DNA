@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, Any
 
 
@@ -51,7 +51,7 @@ def normalize_event(
 
         "timestamp": event.get(
             "timestamp",
-            datetime.utcnow().isoformat()
+            datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         ),
 
         "event_type": str(

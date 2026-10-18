@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AlertOctagon, ShieldCheck, CheckCircle2, Lock, X, Loader2, ArrowRight } from "lucide-react";
+import { AlertOctagon, CheckCircle2, X, Loader2, ArrowRight } from "lucide-react";
 import { playAlertChime, playTacticalClick } from "../utils/audio";
 
 export default function ImmunizeModal({ isOpen, onClose, apiBase = "http://127.0.0.1:8000" }) {
@@ -76,7 +76,10 @@ export default function ImmunizeModal({ isOpen, onClose, apiBase = "http://127.0
           </div>
 
           <button
-            onClick={onClose}
+            onClick={() => {
+              playTacticalClick();
+              onClose();
+            }}
             style={{ background: "transparent", border: "none", color: "#94a3b8", cursor: "pointer" }}
           >
             <X size={20} />

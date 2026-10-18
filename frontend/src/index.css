@@ -1,41 +1,193 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
 
-:root {
+/* ============================================================
+   CYBER HUD DESIGN SYSTEM - THEME TOKENS
+   Default Theme: QUANTUM MATRIX (Phosphor Bio-Emerald & Cyber Cyan)
+   ============================================================ */
+
+:root,
+[data-theme="matrix"] {
   --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Orbitron', 'JetBrains Mono', monospace;
 
-  /* Cyber Palette */
-  --bg-void: #030712;
-  --bg-deep: #050b18;
-  --bg-card: rgba(8, 17, 34, 0.75);
-  --bg-card-hover: rgba(13, 27, 54, 0.85);
-  --bg-glass: rgba(10, 25, 47, 0.6);
-  --border-subtle: rgba(30, 58, 95, 0.4);
-  --border-glow: rgba(0, 240, 255, 0.35);
+  /* Surfaces & Backdrops */
+  --bg-void: #020509;
+  --bg-deep: #040c14;
+  --bg-card: rgba(3, 18, 24, 0.76);
+  --bg-card-hover: rgba(5, 28, 36, 0.88);
+  --bg-glass: rgba(2, 22, 28, 0.65);
+  --border-subtle: rgba(0, 255, 157, 0.22);
+  --border-glow: rgba(0, 255, 157, 0.55);
 
-  /* Bioluminescent Neon Accents */
-  --cyan-neon: #00f0ff;
-  --cyan-glow: rgba(0, 240, 255, 0.25);
-  --emerald-neon: #10b981;
-  --emerald-glow: rgba(16, 185, 129, 0.25);
-  --violet-neon: #a855f7;
-  --violet-glow: rgba(168, 85, 247, 0.25);
-  --crimson-neon: #ff2a5f;
-  --crimson-glow: rgba(255, 42, 95, 0.25);
-  --amber-neon: #f59e0b;
-  --amber-glow: rgba(245, 158, 11, 0.25);
+  /* Primary Neon Accent Colors */
+  --cyan-neon: #00ff9d;           /* Matrix Phosphor Emerald */
+  --cyan-glow: rgba(0, 255, 157, 0.32);
+  --emerald-neon: #39ff14;        /* Hyper Lime Bio-Defense */
+  --emerald-glow: rgba(57, 255, 20, 0.28);
+  --violet-neon: #00f0ff;         /* Quantum Cyan Telemetry */
+  --violet-glow: rgba(0, 240, 255, 0.3);
+  --crimson-neon: #ff0055;        /* Critical Threat Crimson */
+  --crimson-glow: rgba(255, 0, 85, 0.35);
+  --amber-neon: #ffb700;          /* Warning Sensor Amber */
+  --amber-glow: rgba(255, 183, 0, 0.28);
+
+  /* Tactical HUD Accent */
+  --hud-accent: #00ff9d;
+  --hud-grid: rgba(0, 255, 157, 0.07);
 
   /* Typography */
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --text-highlight: #e2e8f0;
+  --text-primary: #f0fdf4;
+  --text-secondary: #86efac;
+  --text-muted: #4ade80;
+  --text-highlight: #ffffff;
 
   /* Shadows */
-  --shadow-neon-cyan: 0 0 25px rgba(0, 240, 255, 0.18);
-  --shadow-neon-crimson: 0 0 25px rgba(255, 42, 95, 0.22);
-  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+  --shadow-neon-cyan: 0 0 28px rgba(0, 255, 157, 0.35);
+  --shadow-neon-crimson: 0 0 28px rgba(255, 0, 85, 0.38);
+  --shadow-card: 0 14px 40px -10px rgba(0, 0, 0, 0.85);
+
+  /* Canvas Gradients */
+  --canvas-grad-1: rgba(0, 255, 157, 0.06);
+  --canvas-grad-2: rgba(0, 240, 255, 0.05);
+  --canvas-grad-3: rgba(255, 0, 85, 0.04);
 }
+
+/* ------------------------------------------------------------
+   THEME 2: NEO-TOKYO SYNTHWAVE (Hot Magenta & Ultraviolet)
+   ------------------------------------------------------------ */
+[data-theme="tokyo"] {
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Orbitron', 'JetBrains Mono', monospace;
+
+  --bg-void: #07020e;
+  --bg-deep: #110520;
+  --bg-card: rgba(20, 8, 38, 0.78);
+  --bg-card-hover: rgba(34, 12, 62, 0.9);
+  --bg-glass: rgba(26, 9, 48, 0.65);
+  --border-subtle: rgba(255, 0, 127, 0.25);
+  --border-glow: rgba(255, 0, 127, 0.6);
+
+  --cyan-neon: #ff007f;           /* Neon Tokyo Magenta */
+  --cyan-glow: rgba(255, 0, 127, 0.35);
+  --emerald-neon: #00f0ff;        /* Electric Laser Cyan */
+  --emerald-glow: rgba(0, 240, 255, 0.3);
+  --violet-neon: #c084fc;         /* Holographic Lavender */
+  --violet-glow: rgba(192, 132, 252, 0.3);
+  --crimson-neon: #ff2a5f;        /* Hyper Threat Red */
+  --crimson-glow: rgba(255, 42, 95, 0.35);
+  --amber-neon: #ffd166;          /* Synthwave Gold */
+  --amber-glow: rgba(255, 209, 102, 0.28);
+
+  --hud-accent: #ff007f;
+  --hud-grid: rgba(255, 0, 127, 0.07);
+
+  --text-primary: #fdf2f8;
+  --text-secondary: #f472b6;
+  --text-muted: #c084fc;
+  --text-highlight: #ffffff;
+
+  --shadow-neon-cyan: 0 0 28px rgba(255, 0, 127, 0.4);
+  --shadow-neon-crimson: 0 0 28px rgba(255, 42, 95, 0.4);
+  --shadow-card: 0 14px 40px -10px rgba(0, 0, 0, 0.9);
+
+  --canvas-grad-1: rgba(255, 0, 127, 0.07);
+  --canvas-grad-2: rgba(168, 85, 247, 0.06);
+  --canvas-grad-3: rgba(0, 240, 255, 0.05);
+}
+
+/* ------------------------------------------------------------
+   THEME 3: SOLARIS WARFARE (Tactical Amber Gold & Carbon Stealth)
+   ------------------------------------------------------------ */
+[data-theme="solaris"] {
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Orbitron', 'JetBrains Mono', monospace;
+
+  --bg-void: #060608;
+  --bg-deep: #0f0d14;
+  --bg-card: rgba(22, 16, 8, 0.82);
+  --bg-card-hover: rgba(36, 26, 12, 0.92);
+  --bg-glass: rgba(28, 20, 10, 0.7);
+  --border-subtle: rgba(255, 176, 0, 0.25);
+  --border-glow: rgba(255, 176, 0, 0.65);
+
+  --cyan-neon: #ffb000;           /* High-Voltage Amber Gold */
+  --cyan-glow: rgba(255, 176, 0, 0.38);
+  --emerald-neon: #ff6600;        /* Reactor Core Orange */
+  --emerald-glow: rgba(255, 102, 0, 0.32);
+  --violet-neon: #ffd000;         /* Solar Beam Yellow */
+  --violet-glow: rgba(255, 208, 0, 0.3);
+  --crimson-neon: #ff2244;        /* Critical Red */
+  --crimson-glow: rgba(255, 34, 68, 0.38);
+  --amber-neon: #ffa200;          /* Tactical Warning Amber */
+  --amber-glow: rgba(255, 162, 0, 0.3);
+
+  --hud-accent: #ffb000;
+  --hud-grid: rgba(255, 176, 0, 0.08);
+
+  --text-primary: #fffbeb;
+  --text-secondary: #fcd34d;
+  --text-muted: #fbbf24;
+  --text-highlight: #ffffff;
+
+  --shadow-neon-cyan: 0 0 28px rgba(255, 176, 0, 0.4);
+  --shadow-neon-crimson: 0 0 28px rgba(255, 34, 68, 0.42);
+  --shadow-card: 0 14px 40px -10px rgba(0, 0, 0, 0.92);
+
+  --canvas-grad-1: rgba(255, 176, 0, 0.08);
+  --canvas-grad-2: rgba(255, 102, 0, 0.06);
+  --canvas-grad-3: rgba(255, 34, 68, 0.04);
+}
+
+/* ------------------------------------------------------------
+   THEME 4: ARCTIC TITANIUM (Glacial Ice Cyan & Deep Sea Navy)
+   ------------------------------------------------------------ */
+[data-theme="arctic"] {
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Orbitron', 'JetBrains Mono', monospace;
+
+  --bg-void: #020813;
+  --bg-deep: #051428;
+  --bg-card: rgba(6, 24, 48, 0.78);
+  --bg-card-hover: rgba(10, 36, 72, 0.88);
+  --bg-glass: rgba(6, 28, 56, 0.65);
+  --border-subtle: rgba(0, 245, 212, 0.22);
+  --border-glow: rgba(0, 245, 212, 0.58);
+
+  --cyan-neon: #00f5d4;           /* Glacial Ice Cyan */
+  --cyan-glow: rgba(0, 245, 212, 0.35);
+  --emerald-neon: #38bdf8;        /* Polar Blue */
+  --emerald-glow: rgba(56, 189, 248, 0.3);
+  --violet-neon: #818cf8;         /* Subzero Violet */
+  --violet-glow: rgba(129, 140, 248, 0.3);
+  --crimson-neon: #f43f5e;        /* Threat Rose */
+  --crimson-glow: rgba(244, 63, 94, 0.35);
+  --amber-neon: #facc15;          /* Solar Flare */
+  --amber-glow: rgba(250, 204, 21, 0.28);
+
+  --hud-accent: #00f5d4;
+  --hud-grid: rgba(0, 245, 212, 0.07);
+
+  --text-primary: #f0fdfa;
+  --text-secondary: #99f6e4;
+  --text-muted: #5eead4;
+  --text-highlight: #ffffff;
+
+  --shadow-neon-cyan: 0 0 28px rgba(0, 245, 212, 0.38);
+  --shadow-neon-crimson: 0 0 28px rgba(244, 63, 94, 0.4);
+  --shadow-card: 0 14px 40px -10px rgba(0, 0, 0, 0.88);
+
+  --canvas-grad-1: rgba(0, 245, 212, 0.07);
+  --canvas-grad-2: rgba(56, 189, 248, 0.06);
+  --canvas-grad-3: rgba(129, 140, 248, 0.05);
+}
+
+/* ============================================================
+   GLOBAL RESET & PERFORMANCE BASE
+   ============================================================ */
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -53,6 +205,7 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 #root {
@@ -63,88 +216,132 @@ html, body {
   position: relative;
 }
 
-/* Cyber Background Grid & Glows */
+/* ============================================================
+   HIGH-TECH CYBER BACKGROUND GRID & SCANLINES
+   ============================================================ */
+
 .cyber-canvas-bg {
   position: fixed;
   inset: 0;
   background: 
-    radial-gradient(circle at 10% 15%, rgba(0, 240, 255, 0.05) 0%, transparent 40%),
-    radial-gradient(circle at 90% 20%, rgba(168, 85, 247, 0.05) 0%, transparent 45%),
-    radial-gradient(circle at 50% 90%, rgba(255, 42, 95, 0.04) 0%, transparent 50%),
-    linear-gradient(rgba(3, 7, 18, 0.94), rgba(5, 11, 24, 0.98)),
-    repeating-linear-gradient(0deg, rgba(30, 58, 95, 0.08) 0px, rgba(30, 58, 95, 0.08) 1px, transparent 1px, transparent 40px),
-    repeating-linear-gradient(90deg, rgba(30, 58, 95, 0.08) 0px, rgba(30, 58, 95, 0.08) 1px, transparent 1px, transparent 40px);
+    radial-gradient(circle at 12% 16%, var(--canvas-grad-1) 0%, transparent 45%),
+    radial-gradient(circle at 88% 22%, var(--canvas-grad-2) 0%, transparent 48%),
+    radial-gradient(circle at 50% 92%, var(--canvas-grad-3) 0%, transparent 52%),
+    linear-gradient(var(--bg-void), var(--bg-deep)),
+    repeating-linear-gradient(0deg, var(--hud-grid) 0px, var(--hud-grid) 1px, transparent 1px, transparent 44px),
+    repeating-linear-gradient(90deg, var(--hud-grid) 0px, var(--hud-grid) 1px, transparent 1px, transparent 44px);
   z-index: -1;
   pointer-events: none;
+  transition: background 0.4s ease;
 }
 
-/* CRT Scanlines Option */
+/* CRT Scanlines Layer */
 .scanlines {
   position: fixed;
   inset: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.28) 50%);
   background-size: 100% 4px;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.35;
+  opacity: 0.38;
+}
+
+/* Animated Tactical Radar Sweep Line */
+.radar-sweep-beam {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan-neon), transparent);
+  box-shadow: 0 0 14px var(--cyan-neon);
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 9998;
+  animation: radarBeam 9s infinite linear;
+}
+
+@keyframes radarBeam {
+  0% { transform: translateY(-10px); }
+  100% { transform: translateY(105vh); }
 }
 
 /* Custom Cyber Scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #050b14;
+  background: var(--bg-void);
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e3a5f;
+  background: var(--border-subtle);
   border-radius: 4px;
-  border: 1px solid rgba(0, 240, 255, 0.15);
+  border: 1px solid var(--border-glow);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--cyan-neon);
-  box-shadow: 0 0 10px var(--cyan-neon);
+  box-shadow: 0 0 12px var(--cyan-neon);
 }
 
-/* Glassmorphic Panel Utilities */
+/* ============================================================
+   GLASSMORPHIC HUD PANELS WITH CORNER BRACKETS
+   ============================================================ */
+
 .glass-panel {
-  background: linear-gradient(135deg, rgba(8, 20, 44, 0.62), rgba(4, 10, 24, 0.72));
+  background: var(--bg-card);
   backdrop-filter: blur(28px) saturate(190%);
   -webkit-backdrop-filter: blur(28px) saturate(190%);
-  border: 1px solid rgba(0, 240, 255, 0.22);
-  border-radius: 14px;
-  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
+  contain: layout style;
 }
 
 .glass-panel:hover {
-  border-color: rgba(0, 240, 255, 0.45);
-  box-shadow: 0 20px 45px -10px rgba(0, 240, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-neon-cyan), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-.neon-border-cyan {
-  border: 1px solid var(--cyan-neon);
-  box-shadow: var(--shadow-neon-cyan);
+/* Tactical HUD Corner Brackets ┌ ┐ └ ┘ */
+.hud-corner {
+  position: relative;
 }
 
-.neon-border-crimson {
-  border: 1px solid var(--crimson-neon);
-  box-shadow: var(--shadow-neon-crimson);
+.hud-corner::before,
+.hud-corner::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--cyan-neon);
+  pointer-events: none;
+  transition: all 0.25s ease;
+  z-index: 2;
 }
 
-@keyframes scaleIn {
-  0% { transform: scale(0.92); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+.hud-corner::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid var(--cyan-neon);
+  border-left: 2px solid var(--cyan-neon);
+  border-top-left-radius: 4px;
 }
 
-@keyframes slideInRight {
-  0% { transform: translateX(100%); opacity: 0; }
-  100% { transform: translateX(0); opacity: 1; }
+.hud-corner::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid var(--cyan-neon);
+  border-right: 2px solid var(--cyan-neon);
+  border-bottom-right-radius: 4px;
 }
 
-/* Button & Badge Utilities */
+/* ============================================================
+   TACTICAL BUTTONS & BADGES
+   ============================================================ */
+
 .cyber-badge {
   display: inline-flex;
   align-items: center;
@@ -153,9 +350,10 @@ html, body {
   border-radius: 9999px;
   font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-weight: 800;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  transition: all 0.2s ease;
 }
 
 .cyber-btn {
@@ -166,51 +364,59 @@ html, body {
   padding: 8px 18px;
   border-radius: 8px;
   font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.2s ease;
   border: 1px solid transparent;
   outline: none;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
 }
 
 .cyber-btn-cyan {
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(0, 240, 255, 0.05));
+  background: linear-gradient(135deg, rgba(0, 255, 157, 0.14), rgba(0, 255, 157, 0.04));
   color: var(--cyan-neon);
-  border-color: rgba(0, 240, 255, 0.4);
+  border-color: var(--border-subtle);
 }
+
 .cyber-btn-cyan:hover {
-  background: rgba(0, 240, 255, 0.25);
+  background: var(--cyan-glow);
   border-color: var(--cyan-neon);
-  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+  box-shadow: 0 0 18px var(--cyan-glow);
   transform: translateY(-1px);
 }
 
 .cyber-btn-crimson {
-  background: linear-gradient(135deg, rgba(255, 42, 95, 0.2), rgba(255, 42, 95, 0.06));
+  background: linear-gradient(135deg, rgba(255, 0, 85, 0.18), rgba(255, 0, 85, 0.05));
   color: var(--crimson-neon);
-  border-color: rgba(255, 42, 95, 0.4);
+  border-color: rgba(255, 0, 85, 0.45);
 }
+
 .cyber-btn-crimson:hover {
-  background: rgba(255, 42, 95, 0.3);
+  background: rgba(255, 0, 85, 0.3);
   border-color: var(--crimson-neon);
-  box-shadow: 0 0 15px rgba(255, 42, 95, 0.4);
+  box-shadow: 0 0 18px rgba(255, 0, 85, 0.45);
   transform: translateY(-1px);
 }
 
+/* Pulsing Status Indicators */
 .pulse-indicator {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   animation: cyberPulse 2s infinite ease-in-out;
+  display: inline-block;
+  flex-shrink: 0;
 }
 
 @keyframes cyberPulse {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-  70% { transform: scale(1.15); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 157, 0.7); }
+  70% { transform: scale(1.2); box-shadow: 0 0 0 8px rgba(0, 255, 157, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 157, 0); }
 }
 
 /* Monospace Code blocks */
@@ -218,11 +424,36 @@ html, body {
   font-family: var(--font-mono);
   font-size: 12px;
   line-height: 1.6;
-  background: #020611;
-  border: 1px solid rgba(30, 58, 95, 0.6);
+  background: var(--bg-void);
+  border: 1px solid var(--border-subtle);
   border-radius: 8px;
   padding: 14px;
-  color: #38bdf8;
+  color: var(--cyan-neon);
   overflow-x: auto;
   white-space: pre;
+}
+
+/* Animation Utilities */
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Chamfered Angled Cut Edge */
+.cyber-cut {
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
 }

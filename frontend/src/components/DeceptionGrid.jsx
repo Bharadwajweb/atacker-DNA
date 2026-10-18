@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ShieldAlert, Key, Database, Server, Terminal, Lock, CheckCircle2, PlusCircle } from "lucide-react";
-import { playTacticalClick, playAlertChime } from "../utils/audio";
+import { playAlertChime } from "../utils/audio";
 
 const DECOYS = [
   { id: "decoy-lsass", name: "Canary AD Domain Admin in LSASS", type: "CREDENTIAL_TRAP", icon: Key, status: "PRIMED", hits: 3 },
@@ -45,7 +45,7 @@ export default function DeceptionGrid({ deceptionData = { active: false, actions
               <ShieldAlert size={13} /> CRISPR DECEPTION GRID
             </span>
             <span style={{ fontSize: 12, color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
-              SYNTHETIC HONEYTOKEN BINDING
+              {deceptionData?.events || decoys.length} ASSETS PRIMED • SYNTHETIC HONEYTOKEN BINDING
             </span>
           </div>
           <h2 style={{ fontSize: 22, fontWeight: 800, marginTop: 6, letterSpacing: "-0.02em" }}>

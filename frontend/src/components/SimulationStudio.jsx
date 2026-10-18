@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { PlayCircle, ShieldAlert, Terminal, CheckCircle2, Loader2, Sparkles, Skull, EyeOff, FileKey } from "lucide-react";
+import { PlayCircle, Terminal, Loader2, Sparkles, Skull, EyeOff, FileKey } from "lucide-react";
 import { playSimulationLaunch, playTacticalClick } from "../utils/audio";
 
 const SCENARIOS = [
@@ -49,7 +49,6 @@ export default function SimulationStudio({ onSimulationComplete, apiBase = "http
   const [selectedScenario, setSelectedScenario] = useState("APT29_ESPIONAGE");
   const [isSimulating, setIsSimulating] = useState(false);
   const [simLog, setSimLog] = useState([]);
-  const [lastResult, setLastResult] = useState(null);
 
   const handleLaunch = async () => {
     playSimulationLaunch();
@@ -76,7 +75,6 @@ export default function SimulationStudio({ onSimulationComplete, apiBase = "http
         `[BLAST] Top attribution: ${data.blast?.top_match?.name || "APT Identified"}`
       ]);
 
-      setLastResult(data);
       if (onSimulationComplete) {
         onSimulationComplete(data);
       }
